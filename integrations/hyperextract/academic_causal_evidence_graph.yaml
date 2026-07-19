@@ -1,0 +1,201 @@
+language: [zh, en]
+
+name: AcademicCausalEvidenceGraph
+type: graph
+tags: [academic, causal, evidence, rag]
+
+description:
+  zh: '科研论文因果证据图：抽取研究问题、方法、变量、数据集、发现、局限、机制、假设和实验，并保留原文证据位置。'
+  en: 'Academic causal evidence graph: extract research questions, methods, variables, datasets, findings, limitations, mechanisms, hypotheses, and experiments with source-grounded evidence.'
+
+output:
+  description:
+    zh: '由科研知识节点和带证据的关系边构成的图谱。'
+    en: 'A graph of academic knowledge nodes and evidence-grounded relations.'
+  entities:
+    description:
+      zh: '论文中明确出现或可由研究设计直接归纳的科研知识对象。'
+      en: 'Academic knowledge objects explicitly stated or directly supported by the study design.'
+    fields:
+      - name: name
+        type: str
+        description:
+          zh: '稳定、简洁的知识对象名称。'
+          en: 'Stable and concise name of the knowledge object.'
+      - name: type
+        type: str
+        description:
+          zh: '类型：paper/theory/research_question/population/method/intervention/comparator/variable/outcome/metric/dataset/experiment/finding/limitation/causal_assumption/mechanism/claim/paper_hypothesis。'
+          en: 'Type: paper/theory/research_question/population/method/intervention/comparator/variable/outcome/metric/dataset/experiment/finding/limitation/causal_assumption/mechanism/claim/paper_hypothesis.'
+      - name: description
+        type: str
+        description:
+          zh: '仅基于当前来源的准确说明，不引入外部常识。'
+          en: 'Accurate source-bounded description without external knowledge.'
+      - name: source_ids
+        type: list
+        description:
+          zh: '支持该节点的论文 ID，例如 P01。'
+          en: 'Paper IDs supporting the node, for example P01.'
+      - name: statement_origin
+        type: str
+        description:
+          zh: '证据来源层级：paper-explicit 或 study-design-derived；禁止写 analyst-derived。'
+          en: 'Evidence origin: paper-explicit or study-design-derived; analyst-derived is forbidden in source extraction.'
+      - name: study_design
+        type: str
+        description:
+          zh: '若适用，记录研究设计，如 RCT、准实验、观察研究、混合方法、基准评测、系统综述或观点文章。'
+          en: 'When applicable, record the design such as RCT, quasi-experiment, observational study, mixed methods, benchmark evaluation, systematic review, or opinion paper.'
+      - name: variable_role
+        type: str
+        description:
+          zh: '若为变量，记录角色：treatment/outcome/mediator/moderator/confounder/covariate/measurement/unspecified。'
+          en: 'For variables, record role: treatment/outcome/mediator/moderator/confounder/covariate/measurement/unspecified.'
+      - name: causal_strength
+        type: str
+        description:
+          zh: '因果证据强度：none/correlational/associational/quasi-causal/experimental/author-claimed。'
+          en: 'Causal evidence strength: none/correlational/associational/quasi-causal/experimental/author-claimed.'
+      - name: scope
+        type: str
+        description:
+          zh: '研究对象、领域、时间、任务和适用边界的简洁说明。'
+          en: 'Concise population, domain, time, task, and boundary conditions.'
+      - name: evidence_quotes
+        type: list
+        description:
+          zh: '原文中的短证据片段；必须逐字复制，不得改写。'
+          en: 'Short verbatim evidence spans copied from the source without paraphrasing.'
+      - name: locations
+        type: list
+        description:
+          zh: '证据位置，格式 source_id|page|section|chunk_id。'
+          en: 'Evidence locations formatted as source_id|page|section|chunk_id.'
+      - name: confidence
+        type: float
+        description:
+          zh: '抽取置信度 0 到 1；不等于科学真实性。'
+          en: 'Extraction confidence from 0 to 1; not scientific truth confidence.'
+      - name: review_status
+        type: str
+        description:
+          zh: '固定为 machine-extracted，人工核验后才可改为 human-verified。'
+          en: 'Use machine-extracted; only human review may promote it to human-verified.'
+  relations:
+    description:
+      zh: '科研对象之间有方向、可回溯证据的关系。'
+      en: 'Directed, source-grounded relations among academic knowledge objects.'
+    fields:
+      - name: source
+        type: str
+        description:
+          zh: '关系起点，必须与已抽取节点 name 完全一致。'
+          en: 'Source node, exactly matching an extracted node name.'
+      - name: target
+        type: str
+        description:
+          zh: '关系终点，必须与已抽取节点 name 完全一致。'
+          en: 'Target node, exactly matching an extracted node name.'
+      - name: type
+        type: str
+        description:
+          zh: '关系类型：investigates/uses/measures/compares_with/intervenes_on/has_outcome/supports/refutes/complicates/causes/mediates/moderates/evaluates/limited_by/derived_from/tested_by/threatens_validity_of。'
+          en: 'Relation type: investigates/uses/measures/compares_with/intervenes_on/has_outcome/supports/refutes/complicates/causes/mediates/moderates/evaluates/limited_by/derived_from/tested_by/threatens_validity_of.'
+      - name: description
+        type: str
+        description:
+          zh: '说明关系在论文中的含义及适用边界。'
+          en: 'Meaning and boundary conditions of the relation in the paper.'
+      - name: source_id
+        type: str
+        description:
+          zh: '提供该关系证据的论文 ID。'
+          en: 'Paper ID providing evidence for this relation.'
+      - name: statement_origin
+        type: str
+        description:
+          zh: '关系来源层级：paper-explicit 或 study-design-derived。'
+          en: 'Relation origin: paper-explicit or study-design-derived.'
+      - name: causal_strength
+        type: str
+        description:
+          zh: '关系的因果强度：none/correlational/associational/quasi-causal/experimental/author-claimed。'
+          en: 'Causal strength: none/correlational/associational/quasi-causal/experimental/author-claimed.'
+      - name: boundary_conditions
+        type: str
+        description:
+          zh: '关系成立的样本、任务、时间、对照或其他边界。'
+          en: 'Population, task, time, comparator, or other conditions under which the relation holds.'
+      - name: evidence_quote
+        type: str
+        description:
+          zh: '支持关系的短原文片段，必须逐字复制。'
+          en: 'Short verbatim source span supporting the relation.'
+      - name: location
+        type: str
+        description:
+          zh: '格式 source_id|page|section|chunk_id。'
+          en: 'Formatted as source_id|page|section|chunk_id.'
+      - name: confidence
+        type: float
+        description:
+          zh: '关系抽取置信度 0 到 1。'
+          en: 'Relation extraction confidence from 0 to 1.'
+      - name: review_status
+        type: str
+        description:
+          zh: '固定为 machine-extracted。'
+          en: 'Use machine-extracted.'
+
+guideline:
+  target:
+    zh: '你是严格的科研证据抽取器。所有节点和关系必须可回到输入中的 SOURCE_ID、PAGE、SECTION 和 CHUNK_ID。'
+    en: 'You are a strict academic evidence extractor. Every node and relation must be traceable to SOURCE_ID, PAGE, SECTION, and CHUNK_ID in the input.'
+  rules_for_entities:
+    zh:
+      - '仅抽取当前片段明确陈述或被研究设计直接支持的知识。'
+      - 'evidence_quotes 必须逐字复制输入中的短片段。'
+      - '不得把相关性结果自动表述为因果发现。'
+      - '无法确定时降低 confidence，不得补充外部常识。'
+      - 'review_status 固定写 machine-extracted。'
+    en:
+      - 'Extract only knowledge explicitly stated or directly supported by the study design in the current chunk.'
+      - 'Evidence quotes must be short verbatim spans from the input.'
+      - 'Each evidence quote must be one contiguous substring copied character-for-character from exactly one [TEXT] block.'
+      - 'Never join non-adjacent spans, remove hyphenation, normalize spelling, or insert ellipses into evidence quotes.'
+      - 'If no short contiguous quote supports an item, omit the item instead of paraphrasing a quote.'
+      - 'Do not convert correlational findings into causal findings.'
+      - 'Use paper_hypothesis only for a hypothesis stated by the paper; never create an analyst hypothesis in this layer.'
+      - 'Set statement_origin to paper-explicit unless the item follows directly from the reported study design.'
+      - 'Record population, intervention, comparator, outcome, measurements, and design when the chunk provides them.'
+      - 'Lower confidence when uncertain and never add outside knowledge.'
+      - 'Set review_status to machine-extracted.'
+  rules_for_relations:
+    zh:
+      - '只连接已抽取节点，source 和 target 必须与节点 name 完全一致。'
+      - 'causes/mediates/moderates 仅在论文明确提出并有相应设计支持时使用。'
+      - '支持和反驳必须保留适用范围、实验条件和限制。'
+      - '每条关系必须包含 source_id、evidence_quote 和 location。'
+    en:
+      - 'Connect only extracted nodes; source and target must exactly match node names.'
+      - 'Use causes/mediates/moderates only when explicitly stated and supported by the study design.'
+      - 'Use supports/refutes/complicates only for relationships among claims inside the paper, not for the external AI-companion idea.'
+      - 'Support and refutation relations must retain scope, experimental conditions, and limitations.'
+      - 'Every relation must include source_id, evidence_quote, and location.'
+      - 'The relation evidence_quote must be one contiguous character-for-character substring from exactly one [TEXT] block; never use ellipses or combine sentences from separate chunks.'
+      - 'The location must be copied from the LOCATION line belonging to the same [SOURCE_CHUNK] as the evidence quote.'
+
+identifiers:
+  entity_id: name
+  relation_id: '{source}|{type}|{target}|{source_id}'
+  relation_members:
+    source: source
+    target: target
+
+options:
+  extraction_mode: two_stage
+
+display:
+  entity_label: '{name} ({type})'
+  relation_label: '{type}'

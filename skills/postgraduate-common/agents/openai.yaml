@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Common"
+  short_description: "Govern shared evidence, artifacts, privacy, and routing"
+  default_prompt: "Use $postgraduate-common to maintain or audit the shared contracts for this Skill family."

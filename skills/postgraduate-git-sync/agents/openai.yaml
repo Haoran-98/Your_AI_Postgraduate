@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Git Sync"
+  short_description: "Version and push permitted research artifacts with notes"
+  default_prompt: "Use $postgraduate-git-sync to commit and synchronize the permitted changes with an explicit comment."

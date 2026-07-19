@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Corpus Synthesizer"
+  short_description: "Consolidate a paper corpus into durable knowledge pages"
+  default_prompt: "Use $postgraduate-corpus-synthesizer to synthesize the completed corpus without losing provenance."

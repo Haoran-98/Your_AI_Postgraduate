@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Idea Ingestor"
+  short_description: "Import research ideas into durable routed vault notes"
+  default_prompt: "Use $postgraduate-idea-ingestor to ingest and persist these IDEA notes in the correct vaults."

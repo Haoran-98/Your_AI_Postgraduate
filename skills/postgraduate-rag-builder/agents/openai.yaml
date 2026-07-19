@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate RAG Builder"
+  short_description: "Build provider-neutral RAG corpora from research vaults"
+  default_prompt: "Use $postgraduate-rag-builder to produce retrieval-ready JSONL with source provenance."

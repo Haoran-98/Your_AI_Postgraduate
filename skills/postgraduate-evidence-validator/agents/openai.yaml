@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Evidence Validator"
+  short_description: "Validate claims and graph evidence against source chunks"
+  default_prompt: "Use $postgraduate-evidence-validator to verify evidence quotes, provenance, and causal wording."

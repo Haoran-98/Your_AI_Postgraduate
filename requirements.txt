@@ -1,0 +1,11 @@
+beautifulsoup4
+langchain-core
+langchain-openai
+numpy
+pydantic>=2
+PyMuPDF
+PyYAML
+rapidocr-onnxruntime
+requests
+pytest
+hyperextract @ git+https://github.com/yifanfeng97/hyper-extract.git@db741358720837449e36569b11029956b8209e2b

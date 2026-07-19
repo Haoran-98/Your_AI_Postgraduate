@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Paper Memory"
+  short_description: "Build compact validated paper memories for later recall"
+  default_prompt: "Use $postgraduate-paper-memory to create resumable source-grounded memories from these papers."

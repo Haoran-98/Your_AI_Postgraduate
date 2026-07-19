@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate RAG Reasoner"
+  short_description: "Retrieve paper memory and reason across validated evidence"
+  default_prompt: "Use $postgraduate-rag-reasoner to answer this research question from rehydrated evidence."

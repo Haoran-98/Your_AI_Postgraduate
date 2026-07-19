@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Causal Builder"
+  short_description: "Build variables, mechanisms, claims, and causal bridges"
+  default_prompt: "Use $postgraduate-causal-builder to convert validated literature into domain causal knowledge."

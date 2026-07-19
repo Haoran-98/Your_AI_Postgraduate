@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Deep Reader"
+  short_description: "Read full papers and extract source-grounded knowledge"
+  default_prompt: "Use $postgraduate-deep-reader to perform strict full-text reading and causal extraction."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Bibliography Manager"
+  short_description: "Preserve and validate BibTeX and citation metadata"
+  default_prompt: "Use $postgraduate-bibliography-manager to add or verify complete citation metadata and BibTeX."

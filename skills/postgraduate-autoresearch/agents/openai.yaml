@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate AutoResearch"
+  short_description: "Explore literature-backed research directions and variants"
+  default_prompt: "Use $postgraduate-autoresearch to expand this idea into an evidence-backed research map."

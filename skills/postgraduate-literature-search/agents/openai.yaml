@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Literature Search"
+  short_description: "Search and screen scholarly sources and related work"
+  default_prompt: "Use $postgraduate-literature-search to find, screen, and map the relevant scholarly literature."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Relation Builder"
+  short_description: "Generate Obsidian relations and semantic paper clusters"
+  default_prompt: "Use $postgraduate-relation-builder to rebuild deterministic links and semantic relations."

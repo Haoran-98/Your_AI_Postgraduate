@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Quality Auditor"
+  short_description: "Check corpus completeness, evidence, metadata, and RAG"
+  default_prompt: "Use $postgraduate-quality-auditor to run the completion and integrity gates."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Hyper-Extract Adapter"
+  short_description: "Run optional exhaustive graph extraction and validation"
+  default_prompt: "Use $postgraduate-hyperextract-adapter for the existing Hyper-Extract graph workflow."

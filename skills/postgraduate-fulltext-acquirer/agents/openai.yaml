@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Fulltext Acquirer"
+  short_description: "Acquire lawful full text and OCR scanned papers"
+  default_prompt: "Use $postgraduate-fulltext-acquirer to obtain and register lawful full text for these papers."

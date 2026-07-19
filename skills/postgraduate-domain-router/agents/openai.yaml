@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Domain Router"
+  short_description: "Route ideas into independent domain research vaults"
+  default_prompt: "Use $postgraduate-domain-router to select the correct Postgraduate domain vault for this research material."

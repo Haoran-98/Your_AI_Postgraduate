@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Vault Scaffolder"
+  short_description: "Create an Obsidian-ready postgraduate research vault"
+  default_prompt: "Use $postgraduate-vault-scaffolder to initialize and validate the requested domain vault."

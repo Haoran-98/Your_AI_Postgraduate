@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Model Tier Controller"
+  short_description: "Assign strong, medium, and weak models by task"
+  default_prompt: "Use $postgraduate-model-tier-controller to resolve and audit model tiers for this workload."

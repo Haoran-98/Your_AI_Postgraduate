@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Cost Auditor"
+  short_description: "Audit requests, tokens, retries, latency, and budgets"
+  default_prompt: "Use $postgraduate-cost-auditor to explain and project the actual processing cost."
