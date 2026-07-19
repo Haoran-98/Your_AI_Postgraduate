@@ -1,40 +1,45 @@
 # Your AI Postgraduate
 
-一套面向长期科研工作的 Codex Skill 体系。它把当前已经运行过的自动科研流程整理为 **1 个父 Skill、1 个公共治理 Skill 和 20 个执行子 Skill**，覆盖想法入库、文献检索、全文阅读、BibTeX、论文记忆、因果知识、RAG、成本审计、质量检查与 Git 同步。
+<p align="right">
+  <a href="./README.md"><kbd><b>English</b></kbd></a>
+  <a href="./README_CN.md"><kbd>简体中文</kbd></a>
+</p>
 
-本仓库只总结和公开现有方法，不提出新的研究方法，也不包含任何私人研究项目、论文全文、API 凭据或历史请求日志。
+A Codex Skill ecosystem for long-running academic research. It packages the research automation workflow already used in practice into **one parent Skill, one shared governance Skill, and 20 operational child Skills**, covering idea ingestion, literature search, full-text reading, BibTeX, paper memory, causal knowledge, RAG, cost auditing, quality control, and Git synchronization.
 
-## 系统边界
+This repository documents and publishes existing methods only. It does not introduce a new research methodology, and it contains no private research projects, paper full text, API credentials, or historical request logs.
 
-这个系统用于：
+## Scope
 
-- 为每个研究领域建立独立的 `Postgraduate_<EnglishDomainSlug>` Obsidian 知识库；
-- 从 IDEA、论文元数据和合法取得的全文逐步形成可追溯研究知识；
-- 保存论文作者、机构、来源、链接、DOI、citation key 与 BibTeX；
-- 对全文进行严格阅读，并提取研究问题、方法、变量、数据集、实验、发现、局限、机制、支撑、反证、反直觉假设与验证实验；
-- 构建带证据状态的因果知识、紧凑论文记忆和 provider-neutral JSONL RAG；
-- 按任务使用强、中、弱模型并审计每次请求、token、重试、延迟与失败单元；
-- 把允许公开或版本化的产物通过 Git 持续同步。
+This system is designed to:
 
-这个系统不用于：
+- create an independent `Postgraduate_<EnglishDomainSlug>` Obsidian vault for each research domain;
+- turn IDEA notes, paper metadata, and lawfully acquired full text into traceable research knowledge;
+- preserve authors, affiliations, source, URL, DOI, citation key, and BibTeX for every paper;
+- read full papers strictly and extract research questions, methods, variables, datasets, experiments, findings, limitations, mechanisms, support, counterevidence, contrarian hypotheses, and validation experiments;
+- build evidence-aware causal knowledge, compact paper memory, and provider-neutral JSONL RAG artifacts;
+- assign strong, medium, and weak models by task while auditing requests, tokens, retries, latency, and failed units;
+- continuously version permitted artifacts through Git.
 
-- 用摘要、搜索片段或模型猜测冒充全文证据；
-- 自动获得论文再分发权；
-- 把机器复核标记成人工核验；
-- 在没有识别设计支持时把相关关系写成因果效应；
-- 自动公开私人 idea、原始语料、PDF、私有接口或认证信息。
+This system is not designed to:
 
-## 架构
+- treat abstracts, search snippets, or model guesses as verified full-text evidence;
+- grant redistribution rights for papers automatically;
+- label machine review as human verification;
+- describe an association as a causal effect without an identifying design;
+- publish private ideas, source corpora, PDFs, private endpoints, or credentials automatically.
+
+## Architecture
 
 ```mermaid
 flowchart TD
-    P[your-ai-postgraduate\n父 Skill] --> C[postgraduate-common\n治理与产物契约]
-    P --> I[Idea 与领域层]
-    P --> L[文献与全文层]
-    P --> M[记忆与证据层]
-    P --> K[因果知识与综合层]
-    P --> R[关系与 RAG 层]
-    P --> O[模型、成本、质量与 Git]
+    P[your-ai-postgraduate\nParent Skill] --> C[postgraduate-common\nGovernance and artifact contracts]
+    P --> I[Idea and domain layer]
+    P --> L[Literature and full-text layer]
+    P --> M[Memory and evidence layer]
+    P --> K[Causal knowledge and synthesis layer]
+    P --> R[Relations and RAG layer]
+    P --> O[Models, cost, quality, and Git]
 
     I --> I1[domain-router]
     I --> I2[vault-scaffolder]
@@ -58,60 +63,60 @@ flowchart TD
     O --> O4[git-sync]
 ```
 
-父 Skill 只负责识别阶段、检查门禁并路由，不在一次上下文里展开所有方法。详细策略放在 `postgraduate-common/references/`，执行 Skill 只按需读取，避免上下文膨胀。
+The parent Skill identifies the current stage, enforces gates, and routes work. It does not expand every method in one context. Detailed policies live under `postgraduate-common/references/`, and operational Skills load them only when needed.
 
-## Skill 目录
+## Skill Catalog
 
-| Skill | 职责 |
+| Skill | Responsibility |
 | --- | --- |
-| `your-ai-postgraduate` | 识别研究阶段、执行门禁并协调完整工作流 |
-| `postgraduate-common` | 维护命名、证据、产物、隐私、模型层级和路由契约 |
-| `postgraduate-domain-router` | 把研究材料路由到独立领域 vault |
-| `postgraduate-vault-scaffolder` | 创建 Obsidian-ready 领域知识库 |
-| `postgraduate-idea-ingestor` | 导入单个或批量 IDEA Markdown |
-| `postgraduate-autoresearch` | 生成文献地图和有证据支撑的 idea 变体 |
-| `postgraduate-literature-search` | 检索、筛选、扩展和关联学术文献 |
-| `postgraduate-fulltext-acquirer` | 合法获取 PDF/全文并处理扫描件 OCR |
-| `postgraduate-bibliography-manager` | 保存、纠正和验证 BibTeX 与引用元数据 |
-| `postgraduate-deep-reader` | 严格基于全文进行深度阅读和因果抽取 |
-| `postgraduate-paper-memory` | 构建紧凑、可恢复、证据可回溯的论文记忆 |
-| `postgraduate-evidence-validator` | 对照原始 chunk 验证引文、声明和因果措辞 |
-| `postgraduate-causal-builder` | 构建变量、机制、声明、假设和因果桥接 |
-| `postgraduate-corpus-synthesizer` | 将完整论文集合综合为持久知识页 |
-| `postgraduate-relation-builder` | 生成 Obsidian 关系图和语义论文簇 |
-| `postgraduate-rag-builder` | 生成 provider-neutral JSONL RAG 语料 |
-| `postgraduate-rag-reasoner` | 检索、回填原始证据并进行跨论文推理 |
-| `postgraduate-hyperextract-adapter` | 可选的 Hyper-Extract 穷举式图抽取与验证 |
-| `postgraduate-model-tier-controller` | 按任务分配和审计 strong/medium/weak 模型 |
-| `postgraduate-cost-auditor` | 审计请求、token、重试、延迟、失败和预算 |
-| `postgraduate-quality-auditor` | 检查语料完整性、证据、元数据和 RAG 可用性 |
-| `postgraduate-git-sync` | 带明确注释地提交并同步允许版本化的产物 |
+| `your-ai-postgraduate` | Identify the research stage, enforce gates, and coordinate the complete workflow |
+| `postgraduate-common` | Govern naming, evidence, artifacts, privacy, model tiers, and routing contracts |
+| `postgraduate-domain-router` | Route research material into an independent domain vault |
+| `postgraduate-vault-scaffolder` | Create an Obsidian-ready domain knowledge base |
+| `postgraduate-idea-ingestor` | Import one or more IDEA Markdown files |
+| `postgraduate-autoresearch` | Produce literature maps and evidence-backed idea variants |
+| `postgraduate-literature-search` | Search, screen, expand, and connect scholarly literature |
+| `postgraduate-fulltext-acquirer` | Lawfully acquire PDF/full text and OCR scanned documents |
+| `postgraduate-bibliography-manager` | Preserve, correct, and validate BibTeX and citation metadata |
+| `postgraduate-deep-reader` | Perform strict full-text reading and causal extraction |
+| `postgraduate-paper-memory` | Build compact, resumable, source-grounded paper memories |
+| `postgraduate-evidence-validator` | Validate quotations, claims, and causal wording against source chunks |
+| `postgraduate-causal-builder` | Build variables, mechanisms, claims, hypotheses, and causal bridges |
+| `postgraduate-corpus-synthesizer` | Consolidate a complete paper corpus into durable knowledge pages |
+| `postgraduate-relation-builder` | Generate Obsidian relations and semantic paper clusters |
+| `postgraduate-rag-builder` | Produce provider-neutral JSONL RAG corpora |
+| `postgraduate-rag-reasoner` | Retrieve, rehydrate, and reason across validated paper evidence |
+| `postgraduate-hyperextract-adapter` | Run optional exhaustive Hyper-Extract graph extraction and validation |
+| `postgraduate-model-tier-controller` | Assign and audit strong, medium, and weak models by task |
+| `postgraduate-cost-auditor` | Audit requests, tokens, retries, latency, failures, and budgets |
+| `postgraduate-quality-auditor` | Check corpus completeness, evidence, metadata, and RAG usability |
+| `postgraduate-git-sync` | Commit and synchronize permitted artifacts with explicit comments |
 
-## 现有工作流
+## Existing Workflow
 
 ```text
 IDEA
-  -> 领域路由与 vault 初始化
-  -> 文献检索、筛选和 paper master
-  -> 合法全文、OCR 与 BibTeX
-  -> 严格全文论文卡片
-  -> 紧凑论文记忆
-  -> 引文和 claim-support 验证
-  -> 变量、机制、因果声明、假设和语料级综合
-  -> Obsidian 关系层与 JSONL RAG
-  -> 检索、原文回填和跨论文科研推理
-  -> 成本/质量审计
-  -> Git 提交和同步
+  -> domain routing and vault initialization
+  -> literature search, screening, and paper master
+  -> lawful full text, OCR, and BibTeX
+  -> strict full-text paper cards
+  -> compact paper memory
+  -> quotation and claim-support validation
+  -> variables, mechanisms, causal claims, hypotheses, and corpus synthesis
+  -> Obsidian relations and JSONL RAG
+  -> retrieval, source rehydration, and cross-paper research reasoning
+  -> cost and quality audit
+  -> Git commit and synchronization
 ```
 
-每个阶段写入可恢复产物。长论文按独立 part 保存；失败只重跑失败单元；论文卡片、paper master、PDF、全文和 BibTeX 始终是权威文献层。紧凑论文记忆是默认机器回忆层，Hyper-Extract 是可选的底层穷举抽取器。
+Every stage writes resumable artifacts. Long papers are saved as independent parts, and only failed units are retried. Paper cards, paper masters, PDFs, full text, and BibTeX remain the authoritative literature layer. Compact paper memory is the default machine recall layer; Hyper-Extract is an optional exhaustive lower-level extractor.
 
-## 产物结构
+## Artifact Layout
 
 ```text
 Postgraduate_<EnglishDomainSlug>/
   .obsidian/
-  .raw/                       # 不可变原始材料，不默认公开
+  .raw/                       # Immutable source material; private by default
   wiki/
     index.md
     hot.md
@@ -135,11 +140,11 @@ Postgraduate_<EnglishDomainSlug>/
     paper-memory/
 ```
 
-论文卡片必须保留作者、机构、年份/来源、URL、DOI、citation key、BibTeX、全文状态、证据等级、因果状态和本地来源路径。派生的 memory 或 graph 不得覆盖这些信息。
+Every paper card must preserve authors, affiliations, year/source, URL, DOI, citation key, BibTeX, full-text state, evidence level, causal state, and local source paths. Derived memory or graph artifacts must never overwrite this metadata.
 
-## 安装
+## Installation
 
-要求：Git、Python 3.11+；Obsidian 可选；OCR 和 PDF 工具按需安装。
+Requirements: Git and Python 3.11+. Obsidian is optional. Install OCR and PDF system tools only when needed.
 
 ```bash
 git clone git@github.com:Haoran-98/Your_AI_Postgraduate.git
@@ -155,7 +160,7 @@ export RESEARCH_ROOT="${RESEARCH_ROOT:-$HOME/auto-research}"
 mkdir -p "$RESEARCH_ROOT"
 ```
 
-把 Skill 目录链接到 Codex：
+Link the Skill directories into Codex:
 
 ```bash
 CODEX_SKILLS="${CODEX_HOME:-$HOME/.codex}/skills"
@@ -166,32 +171,32 @@ for skill in "$YOUR_AI_POSTGRADUATE_HOME"/skills/*; do
 done
 ```
 
-已经存在同名 Skill 时先人工比较，不要直接覆盖本地修改。
+If a Skill with the same name already exists, compare it manually instead of overwriting local changes.
 
-## API 配置
+## API Configuration
 
-脚本使用 OpenAI-compatible LLM 与 embedding 接口。复制空白模板并填写，`auth` 已被 `.gitignore` 排除：
+The scripts use OpenAI-compatible LLM and embedding endpoints. Copy the blank template and fill it locally. `auth` is excluded by `.gitignore`:
 
 ```bash
 cp auth.example auth
-# 编辑 auth 后加载到当前 shell
+# Load the completed auth file into the current shell.
 set -a
 . ./auth
 set +a
 ```
 
-三个 LLM model ID 对应任务强度：
+The three LLM model IDs represent task strengths:
 
-- `OPENAI_MEDIUM_MODEL_ID`：论文抽取、长论文合并、claim-support 复核；
-- `OPENAI_STRONG_MODEL_ID`：检索后的跨论文综合与科研推理；
-- `OPENAI_WEAK_MODEL_ID`：仅用于受控同论文成本对照，默认不参与生产抽取；
-- `EMBEDDING_MODEL_ID`：Hyper-Extract 索引和需要 embedding 的检索。
+- `OPENAI_MEDIUM_MODEL_ID`: paper extraction, long-paper consolidation, and claim-support review;
+- `OPENAI_STRONG_MODEL_ID`: retrieved cross-paper synthesis and research reasoning;
+- `OPENAI_WEAK_MODEL_ID`: controlled same-paper cost comparisons only, disabled for production extraction by default;
+- `EMBEDDING_MODEL_ID`: Hyper-Extract indexing and retrieval that requires embeddings.
 
-生产抽取默认明确传入 `--model-strength medium`。只有同一失败单元在中等模型失败并被记录后，才升级到强模型。
+Production extraction should explicitly pass `--model-strength medium`. Escalate to a strong model only after the medium model fails on the same independently saved unit and the failed attempt has been recorded.
 
-## 快速开始
+## Quick Start
 
-创建领域 vault：
+Create a domain vault:
 
 ```bash
 python scripts/scaffold_postgraduate_vault.py \
@@ -199,7 +204,7 @@ python scripts/scaffold_postgraduate_vault.py \
   --domain "Example Domain"
 ```
 
-准备 provider-neutral RAG：
+Prepare provider-neutral RAG artifacts:
 
 ```bash
 python scripts/prepare_rag_corpus.py \
@@ -212,7 +217,7 @@ python scripts/search_rag_corpus.py \
   --corpus "$RESEARCH_ROOT/Postgraduate_Example_Domain/rag/corpus.jsonl"
 ```
 
-运行单篇紧凑论文记忆抽取：
+Run compact paper-memory extraction for one paper:
 
 ```bash
 python scripts/run_paper_memory_pipeline.py \
@@ -222,7 +227,7 @@ python scripts/run_paper_memory_pipeline.py \
   --model-strength medium
 ```
 
-检索论文记忆；加 `--chat` 时才调用强模型进行综合：
+Retrieve paper memory. Add `--chat` only when strong-model synthesis is required:
 
 ```bash
 python scripts/query_paper_memory_rag.py \
@@ -232,33 +237,33 @@ python scripts/query_paper_memory_rag.py \
   --top-k 8
 ```
 
-生成关系层：
+Generate relation layers:
 
 ```bash
 python scripts/generate_vault_relations.py --root "$RESEARCH_ROOT"
 python scripts/generate_semantic_relations.py --root "$RESEARCH_ROOT"
 ```
 
-更多操作由相应 Skill 的 `SKILL.md` 和 `postgraduate-common/references/` 定义。
+Additional operations are defined by each Skill's `SKILL.md` and the policies under `postgraduate-common/references/`.
 
-## 证据等级
+## Evidence Levels
 
-- `verified-fulltext`：可读全文已进入严格阅读流程；
-- `blocked`：保留书目信息和相关性，不用于支撑已验证声明；
-- `exact`：证据引文是原始 chunk 中的连续规范化匹配；
-- `layout-recovered`：通过确定性有序 token 恢复排版抽取错位，仍需 claim-support 复核；
-- `unmatched`：不得进入 validated memory；
-- `machine-reviewed`：模型已对照来源复核，不等于 `human-verified`。
+- `verified-fulltext`: readable full text has entered the strict reading workflow;
+- `blocked`: bibliography and relevance are retained, but the paper cannot support verified claims;
+- `exact`: the evidence quotation is a contiguous normalized match in the original chunk;
+- `layout-recovered`: deterministic ordered-token recovery repaired layout extraction, but claim-support review is still required;
+- `unmatched`: the record must not enter validated memory;
+- `machine-reviewed`: a model checked the source, which is not equivalent to `human-verified`.
 
-因果表述分为 `reported_association`、`author_causal_claim`、`identified_causal_effect` 和 `mechanistic_hypothesis`。只有来源 memory 已通过验证时才能生成有向因果边。
+Causal wording is classified as `reported_association`, `author_causal_claim`, `identified_causal_effect`, or `mechanistic_hypothesis`. A directed causal edge may be emitted only when its source memory has passed validation.
 
 ## Hyper-Extract
 
-[Hyper-Extract](https://github.com/yifanfeng97/hyper-extract) 在本系统中是可选底层抽取器，用于生成更穷举的节点和边。它不能替代论文卡片、紧凑记忆或证据验证；未匹配引文、端点缺失和因果强度不成立的图元素必须被拒绝或降级。
+[Hyper-Extract](https://github.com/yifanfeng97/hyper-extract) is an optional lower-level extractor in this system. It can produce more exhaustive nodes and edges, but it does not replace paper cards, compact memory, or evidence validation. Graph elements with unmatched quotations, missing endpoints, or unsupported causal strength must be rejected or downgraded.
 
-默认研究回忆优先使用紧凑论文记忆，因为它保存重要知识、来源定位和书目元数据，同时减少重复抽取 token。只有确实需要细粒度知识图时再运行 Hyper-Extract。
+Compact paper memory remains the default research recall layer because it preserves important knowledge, source locations, and bibliography while reducing repeated extraction tokens. Run Hyper-Extract only when a fine-grained knowledge graph is actually required.
 
-## 验证与测试
+## Validation And Tests
 
 ```bash
 python -m compileall -q scripts
@@ -269,11 +274,11 @@ for skill in skills/*; do
 done
 ```
 
-提交前还应扫描绝对用户路径、密钥、私有 URL、论文全文、PDF、请求 payload 和私人 idea。仓库中的 `.gitignore` 是最后一道误提交保护，不替代人工检查。
+Before committing, also scan for absolute user paths, secrets, private URLs, paper full text, PDFs, request payloads, and private ideas. `.gitignore` is the last line of defense against accidental publication, not a replacement for manual review.
 
-## Git 同步
+## Git Synchronization
 
-对允许版本化的改动使用明确提交注释：
+Use an explicit commit comment for every permitted update:
 
 ```bash
 scripts/sync_with_comment.sh \
@@ -281,18 +286,18 @@ scripts/sync_with_comment.sh \
   "Document the validated extraction and cost audit changes."
 ```
 
-## 隐私与版权
+## Privacy And Copyright
 
-本仓库不包含：
+This repository does not contain:
 
-- API key、authorization header、cookie 或私有 endpoint；
-- 私人草稿、未公开 idea、个人笔记或保密数据；
-- 没有再分发权的 PDF 与全文；
-- 含私人来源文本的模型请求/响应日志；
-- 本机用户名、绝对 home 路径和用户项目 vault。
+- API keys, authorization headers, cookies, or private endpoints;
+- private drafts, unpublished ideas, personal notes, or confidential datasets;
+- PDFs or full text without redistribution rights;
+- model request/response logs containing private source text;
+- machine usernames, absolute home paths, or user project vaults.
 
-使用者负责确认论文、数据、模型和生成产物的许可范围。
+Users are responsible for verifying the licenses of papers, datasets, models, and generated artifacts.
 
 ## License
 
-代码、Skill 指令、通用模板和仓库自有文档采用 [MIT License](LICENSE)。第三方项目和学术材料遵循各自许可证与版权条款。
+Repository-owned code, Skill instructions, generic templates, and documentation are released under the [MIT License](LICENSE). Third-party projects and scholarly materials remain subject to their own licenses and copyright terms.
