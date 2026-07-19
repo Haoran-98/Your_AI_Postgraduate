@@ -1,6 +1,6 @@
 ---
 name: your-ai-postgraduate
-description: "Orchestrate the complete Your AI Postgraduate research system. Use when the user asks to start, plan, continue, inspect, or complete a multi-stage research project spanning ideas, literature, full text, paper memory, causal knowledge, RAG, cost control, quality gates, and Git synchronization."
+description: "Orchestrate the complete Your AI Postgraduate research system. Use when the user asks to start, plan, continue, inspect, or complete a multi-stage research project spanning ideas, literature, full text, paper memory, causal knowledge, RAG, knowledge visualization, task-fit profiling, cost control, quality gates, and Git synchronization."
 ---
 
 # Your AI Postgraduate
@@ -26,7 +26,8 @@ Treat each `Postgraduate_<EnglishDomainSlug>` vault as one domain-specific postg
 7. Synthesize variables, mechanisms, datasets, claims, hypotheses, and causal bridges.
 8. Build relations and RAG artifacts.
 9. Retrieve evidence and reason about research ideas.
-10. Audit quality, cost, and repository state; then synchronize Git.
+10. Visualize acquired knowledge and profile current research-task fit.
+11. Audit quality, cost, and repository state; then synchronize Git.
 
 Do not force every request through every stage. Resume from durable artifacts already present.
 
@@ -39,6 +40,7 @@ Do not force every request through every stage. Resume from durable artifacts al
 - Causal wording stays conservative unless the study design identifies a causal effect.
 - Medium handles production ingestion; strong handles retrieved cross-paper synthesis; weak remains benchmark-only.
 - Every model call is auditable by paper, task, model tier, token count, latency, and retry state.
+- Knowledge profiles reflect current stored artifacts and gaps; they do not measure permanent ability or scientific novelty.
 - Public repositories exclude credentials, private ideas, copyrighted corpora, PDFs without redistribution rights, and machine-specific paths.
 
 ## References

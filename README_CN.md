@@ -5,7 +5,7 @@
   <a href="./README_CN.md"><kbd><b>简体中文</b></kbd></a>
 </p>
 
-一套面向长期科研工作的 Codex Skill 体系。它把当前已经运行过的自动科研流程整理为 **1 个父 Skill、1 个公共治理 Skill 和 20 个执行子 Skill**，覆盖想法入库、文献检索、全文阅读、BibTeX、论文记忆、因果知识、RAG、成本审计、质量检查与 Git 同步。
+一套面向长期科研工作的 Codex Skill 体系。它把当前已经运行过的自动科研流程整理为 **1 个父 Skill、1 个公共治理 Skill 和 21 个执行子 Skill**，覆盖想法入库、文献检索、全文阅读、BibTeX、论文记忆、因果知识、RAG、知识可视化、任务适配画像、成本审计、质量检查与 Git 同步。
 
 本仓库只总结和公开现有方法，不提出新的研究方法，也不包含任何私人研究项目、论文全文、API 凭据或历史请求日志。
 
@@ -39,7 +39,7 @@ flowchart TD
     P --> M[记忆与证据层]
     P --> K[因果知识与综合层]
     P --> R[关系与 RAG 层]
-    P --> O[模型、成本、质量与 Git]
+    P --> O[画像、模型、成本、质量与 Git]
 
     I --> I1[domain-router]
     I --> I2[vault-scaffolder]
@@ -57,10 +57,11 @@ flowchart TD
     R --> R1[relation-builder]
     R --> R2[rag-builder]
     R --> R3[rag-reasoner]
-    O --> O1[model-tier-controller]
-    O --> O2[cost-auditor]
-    O --> O3[quality-auditor]
-    O --> O4[git-sync]
+    O --> O1[knowledge-profiler]
+    O --> O2[model-tier-controller]
+    O --> O3[cost-auditor]
+    O --> O4[quality-auditor]
+    O --> O5[git-sync]
 ```
 
 父 Skill 只负责识别阶段、检查门禁并路由，不在一次上下文里展开所有方法。详细策略放在 `postgraduate-common/references/`，执行 Skill 只按需读取，避免上下文膨胀。
@@ -86,6 +87,7 @@ flowchart TD
 | `postgraduate-relation-builder` | 生成 Obsidian 关系图和语义论文簇 |
 | `postgraduate-rag-builder` | 生成 provider-neutral JSONL RAG 语料 |
 | `postgraduate-rag-reasoner` | 检索、回填原始证据并进行跨论文推理 |
+| `postgraduate-knowledge-profiler` | 可视化已获取知识并评估当前研究任务适配度 |
 | `postgraduate-hyperextract-adapter` | 可选的 Hyper-Extract 穷举式图抽取与验证 |
 | `postgraduate-model-tier-controller` | 按任务分配和审计 strong/medium/weak 模型 |
 | `postgraduate-cost-auditor` | 审计请求、token、重试、延迟、失败和预算 |
@@ -105,6 +107,7 @@ IDEA
   -> 变量、机制、因果声明、假设和语料级综合
   -> Obsidian 关系层与 JSONL RAG
   -> 检索、原文回填和跨论文科研推理
+  -> 知识可视化与当前任务适配画像
   -> 成本/质量审计
   -> Git 提交和同步
 ```
@@ -135,9 +138,11 @@ Postgraduate_<EnglishDomainSlug>/
     sources/
     surveys/
     relations/semantic/
+    profile/
   rag/
     corpus.jsonl
     paper-memory/
+    postgraduate-profile.json
 ```
 
 论文卡片必须保留作者、机构、年份/来源、URL、DOI、citation key、BibTeX、全文状态、证据等级、因果状态和本地来源路径。派生的 memory 或 graph 不得覆盖这些信息。
@@ -244,6 +249,15 @@ python scripts/generate_vault_relations.py --root "$RESEARCH_ROOT"
 python scripts/generate_semantic_relations.py --root "$RESEARCH_ROOT"
 ```
 
+不调用 LLM，生成调研后的知识画像：
+
+```bash
+python scripts/generate_postgraduate_profile.py \
+  --root "$RESEARCH_ROOT" \
+  --vault Postgraduate_Example_Domain \
+  --language zh
+```
+
 更多操作由相应 Skill 的 `SKILL.md` 和 `postgraduate-common/references/` 定义。
 
 ## 证据等级
@@ -256,6 +270,17 @@ python scripts/generate_semantic_relations.py --root "$RESEARCH_ROOT"
 - `machine-reviewed`：模型已对照来源复核，不等于 `human-verified`。
 
 因果表述分为 `reported_association`、`author_causal_claim`、`identified_causal_effect` 和 `mechanistic_hypothesis`。只有来源 memory 已通过验证时才能生成有向因果边。
+
+## 知识画像
+
+完成一次实质性调研后，`postgraduate-knowledge-profiler` 会把已有结果汇总为：
+
+- 可在 Obsidian 中查看的知识类型与来源链接；
+- 展示六个准备度维度和任务适配排名的静态 HTML 面板；
+- 可供后续程序读取的 JSON 画像；
+- 当前已有知识最适合支撑哪些研究任务的建议。
+
+六个维度分别是文献基础、证据扎根、方法与实证知识、因果推理、综合与创新、检索就绪度。推荐使用公开固定权重确定性计算，不调用 LLM。它反映当前产物准备度，不代表永久能力、科学创新性或自主完成科研的能力。
 
 ## Hyper-Extract
 

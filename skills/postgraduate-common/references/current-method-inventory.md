@@ -13,6 +13,7 @@ This repository packages only methods already used in the source system:
 - causal variables, mechanisms, assumptions, claims, hypotheses, and domain bridges;
 - deterministic Obsidian relation maps and semantic clusters;
 - provider-neutral JSONL RAG and lexical retrieval;
+- deterministic post-research knowledge visualization and current task-fit profiling over stored artifacts;
 - optional Hyper-Extract exhaustive graphs with conservative sanitization;
 - weak/medium/strong task tiers;
 - per-request payload, token, latency, retry, failure, and cost auditing;

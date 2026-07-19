@@ -5,7 +5,7 @@
   <a href="./README_CN.md"><kbd>简体中文</kbd></a>
 </p>
 
-A Codex Skill ecosystem for long-running academic research. It packages the research automation workflow already used in practice into **one parent Skill, one shared governance Skill, and 20 operational child Skills**, covering idea ingestion, literature search, full-text reading, BibTeX, paper memory, causal knowledge, RAG, cost auditing, quality control, and Git synchronization.
+A Codex Skill ecosystem for long-running academic research. It packages the research automation workflow already used in practice into **one parent Skill, one shared governance Skill, and 21 operational child Skills**, covering idea ingestion, literature search, full-text reading, BibTeX, paper memory, causal knowledge, RAG, knowledge visualization, task-fit profiling, cost auditing, quality control, and Git synchronization.
 
 This repository documents and publishes existing methods only. It does not introduce a new research methodology, and it contains no private research projects, paper full text, API credentials, or historical request logs.
 
@@ -39,7 +39,7 @@ flowchart TD
     P --> M[Memory and evidence layer]
     P --> K[Causal knowledge and synthesis layer]
     P --> R[Relations and RAG layer]
-    P --> O[Models, cost, quality, and Git]
+    P --> O[Profile, models, cost, quality, and Git]
 
     I --> I1[domain-router]
     I --> I2[vault-scaffolder]
@@ -57,10 +57,11 @@ flowchart TD
     R --> R1[relation-builder]
     R --> R2[rag-builder]
     R --> R3[rag-reasoner]
-    O --> O1[model-tier-controller]
-    O --> O2[cost-auditor]
-    O --> O3[quality-auditor]
-    O --> O4[git-sync]
+    O --> O1[knowledge-profiler]
+    O --> O2[model-tier-controller]
+    O --> O3[cost-auditor]
+    O --> O4[quality-auditor]
+    O --> O5[git-sync]
 ```
 
 The parent Skill identifies the current stage, enforces gates, and routes work. It does not expand every method in one context. Detailed policies live under `postgraduate-common/references/`, and operational Skills load them only when needed.
@@ -86,6 +87,7 @@ The parent Skill identifies the current stage, enforces gates, and routes work. 
 | `postgraduate-relation-builder` | Generate Obsidian relations and semantic paper clusters |
 | `postgraduate-rag-builder` | Produce provider-neutral JSONL RAG corpora |
 | `postgraduate-rag-reasoner` | Retrieve, rehydrate, and reason across validated paper evidence |
+| `postgraduate-knowledge-profiler` | Visualize acquired knowledge and rank current research-task fit |
 | `postgraduate-hyperextract-adapter` | Run optional exhaustive Hyper-Extract graph extraction and validation |
 | `postgraduate-model-tier-controller` | Assign and audit strong, medium, and weak models by task |
 | `postgraduate-cost-auditor` | Audit requests, tokens, retries, latency, failures, and budgets |
@@ -105,6 +107,7 @@ IDEA
   -> variables, mechanisms, causal claims, hypotheses, and corpus synthesis
   -> Obsidian relations and JSONL RAG
   -> retrieval, source rehydration, and cross-paper research reasoning
+  -> knowledge visualization and current task-fit profile
   -> cost and quality audit
   -> Git commit and synchronization
 ```
@@ -135,9 +138,11 @@ Postgraduate_<EnglishDomainSlug>/
     sources/
     surveys/
     relations/semantic/
+    profile/
   rag/
     corpus.jsonl
     paper-memory/
+    postgraduate-profile.json
 ```
 
 Every paper card must preserve authors, affiliations, year/source, URL, DOI, citation key, BibTeX, full-text state, evidence level, causal state, and local source paths. Derived memory or graph artifacts must never overwrite this metadata.
@@ -244,6 +249,15 @@ python scripts/generate_vault_relations.py --root "$RESEARCH_ROOT"
 python scripts/generate_semantic_relations.py --root "$RESEARCH_ROOT"
 ```
 
+Generate a post-research knowledge profile without an LLM:
+
+```bash
+python scripts/generate_postgraduate_profile.py \
+  --root "$RESEARCH_ROOT" \
+  --vault Postgraduate_Example_Domain \
+  --language en
+```
+
 Additional operations are defined by each Skill's `SKILL.md` and the policies under `postgraduate-common/references/`.
 
 ## Evidence Levels
@@ -256,6 +270,17 @@ Additional operations are defined by each Skill's `SKILL.md` and the policies un
 - `machine-reviewed`: a model checked the source, which is not equivalent to `human-verified`.
 
 Causal wording is classified as `reported_association`, `author_causal_claim`, `identified_causal_effect`, or `mechanistic_hypothesis`. A directed causal edge may be emitted only when its source memory has passed validation.
+
+## Knowledge Profile
+
+After a substantial research pass, `postgraduate-knowledge-profiler` consolidates the stored results into:
+
+- an Obsidian Markdown profile showing knowledge types and source links;
+- a standalone HTML dashboard showing six readiness dimensions and ranked task fit;
+- a JSON profile that downstream tools can inspect;
+- a recommendation for the research task types best supported by the current artifacts.
+
+The six dimensions are literature foundation, evidence grounding, method and empirical knowledge, causal reasoning, synthesis and innovation, and retrieval readiness. Recommendations are calculated from transparent fixed weights without an LLM. They describe current artifact readiness, not permanent ability, scientific novelty, or autonomous research competence.
 
 ## Hyper-Extract
 

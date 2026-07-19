@@ -24,7 +24,9 @@ Postgraduate_<EnglishDomainSlug>/
     sources/
     surveys/
     relations/semantic/
+    profile/
   rag/
+    postgraduate-profile.json
 ```
 
 ## Paper Card
@@ -54,3 +56,15 @@ Each JSONL record contains a stable ID, retrieval text, content hash when availa
 ## Corpus-Level Notes
 
 Create or update variables, mechanisms, datasets/artifacts, supported claims, contrarian hypotheses/tests, causal assumptions, source expansion, survey, index, hot, and log pages.
+
+## Postgraduate Knowledge Profile
+
+After a substantial research pass, the profiler may create:
+
+```text
+wiki/profile/postgraduate-profile.md
+wiki/profile/postgraduate-profile.html
+rag/postgraduate-profile.json
+```
+
+The profile records source counts, knowledge-type counts, top entities, transparent dimension scores, ranked research-task fit, and explicit interpretation limits. It must not contain raw private request payloads or unsupported ability claims.

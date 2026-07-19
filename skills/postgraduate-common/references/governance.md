@@ -7,6 +7,7 @@
 - Preserve `.raw/` sources. Write synthesized durable knowledge under `wiki/`.
 - Read `wiki/index.md` and `wiki/hot.md` before meaningful changes.
 - Update `wiki/index.md`, `wiki/hot.md`, and `wiki/log.md` after meaningful changes.
+- After a substantial completed research pass, regenerate the knowledge profile so acquired knowledge, source coverage, and current task fit remain visible.
 - Prefer official scholarly pages and record why important sources were included or excluded.
 - Never paste private drafts or unpublished idea details into public searches without authorization.
 - Never revert unrelated user changes in a dirty worktree.

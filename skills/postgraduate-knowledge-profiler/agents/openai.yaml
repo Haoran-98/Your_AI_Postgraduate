@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postgraduate Knowledge Profiler"
+  short_description: "Visualize learned knowledge and current research-task fit"
+  default_prompt: "Use $postgraduate-knowledge-profiler to show what this AI postgraduate learned, where it is stored, and which research tasks it is currently best prepared to perform."

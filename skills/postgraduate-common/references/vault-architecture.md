@@ -24,6 +24,8 @@ Postgraduate_<EnglishDomainSlug>/
     ideas/
     relations/
       semantic/
+    profile/
+  rag/
 ```
 
 Do not create `Postgraduate_Common`. Repeated causal knowledge is copied or adapted inside each domain vault.

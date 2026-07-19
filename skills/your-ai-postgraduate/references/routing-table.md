@@ -17,6 +17,7 @@
 | Generate Obsidian and semantic relations | `postgraduate-relation-builder` |
 | Build provider-neutral RAG corpora | `postgraduate-rag-builder` |
 | Query evidence and reason across papers | `postgraduate-rag-reasoner` |
+| Visualize acquired knowledge or recommend current research tasks | `postgraduate-knowledge-profiler` |
 | Use legacy exhaustive Hyper-Extract | `postgraduate-hyperextract-adapter` |
 | Assign weak/medium/strong models | `postgraduate-model-tier-controller` |
 | Audit requests, tokens, latency, and budget | `postgraduate-cost-auditor` |
