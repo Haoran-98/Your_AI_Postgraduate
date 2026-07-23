@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import re
 from dataclasses import dataclass
 from datetime import date
@@ -52,7 +53,14 @@ def first(wiki: Path, subdir: str, pattern: str) -> Path | None:
     return matches[0] if matches else None
 
 
-def idea_id_from_vault(wiki: Path) -> tuple[str, Path] | None:
+def idea_id_from_vault(wiki: Path, requested: str | None = None) -> tuple[str, Path] | None:
+    if requested:
+        for path in sorted((wiki / "ideas").glob(f"{requested}-*.md")):
+            return requested, path
+        for path in sorted(wiki.rglob(f"{requested}-*.md")):
+            return requested, path
+        return None
+
     cards = sorted((wiki / "ideas").glob("idea-*-direction-card.md")) if (wiki / "ideas").exists() else []
     if cards:
         match = re.search(r"(idea-\d+)", cards[0].name)
@@ -64,6 +72,18 @@ def idea_id_from_vault(wiki: Path) -> tuple[str, Path] | None:
         if match:
             return match.group(1), path
     return None
+
+
+def paper_ids_from_master(wiki: Path, idea_id: str) -> set[str]:
+    master = first(wiki, "papers", f"{idea_id}-paper-master.csv")
+    if not master:
+        return set()
+    with master.open("r", encoding="utf-8", errors="ignore", newline="") as handle:
+        return {
+            (row.get("id") or row.get("paper_id") or "").strip()
+            for row in csv.DictReader(handle)
+            if (row.get("id") or row.get("paper_id") or "").strip()
+        }
 
 
 def update_frontmatter_date(text: str, today: str) -> str:
@@ -226,11 +246,11 @@ def update_index_hot_log(wiki: Path, relation_map: Path, idea_id: str, today: st
         write_text(log, text, dry_run)
 
 
-def process_vault(vault: Path, today: str, dry_run: bool) -> VaultStats | None:
+def process_vault(vault: Path, today: str, dry_run: bool, requested_idea_id: str | None = None) -> VaultStats | None:
     wiki = vault / "wiki"
     if not wiki.exists():
         return None
-    detected = idea_id_from_vault(wiki)
+    detected = idea_id_from_vault(wiki, requested_idea_id)
     if not detected:
         return None
     idea_id, idea_card = detected
@@ -241,7 +261,12 @@ def process_vault(vault: Path, today: str, dry_run: bool) -> VaultStats | None:
     survey = first(wiki, "surveys", f"{idea_id}-*.md")
     search_notes = first(wiki, "sources", f"{idea_id}-*.md")
     knowledge = knowledge_pages(wiki, idea_id)
-    papers = sorted((wiki / "papers").glob("P*.md")) if (wiki / "papers").exists() else []
+    paper_ids = paper_ids_from_master(wiki, idea_id)
+    papers = (
+        [path for path in sorted((wiki / "papers").glob("P*.md")) if not paper_ids or path.name.split("-", 1)[0] in paper_ids]
+        if (wiki / "papers").exists()
+        else []
+    )
 
     core_links = [("关系图", relation_map), ("方向卡", idea_card)]
     if master:
@@ -323,6 +348,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Generate Obsidian relation maps inside Postgraduate vaults.")
     parser.add_argument("--root", default="~/auto-research", help="Root containing Postgraduate_* vaults.")
     parser.add_argument("--vault", action="append", default=[], help="Specific vault path or name; may be repeated.")
+    parser.add_argument("--idea-id", help="Generate relations for this idea instead of auto-detecting one.")
     parser.add_argument("--date", default=date.today().isoformat(), help="Date written to frontmatter/logs.")
     parser.add_argument("--dry-run", action="store_true", help="Print planned stats without writing files.")
     args = parser.parse_args()
@@ -330,7 +356,7 @@ def main() -> int:
     root = Path(args.root).expanduser().resolve()
     stats: list[VaultStats] = []
     for vault in select_vaults(root, args.vault):
-        item = process_vault(vault.expanduser().resolve(), args.date, args.dry_run)
+        item = process_vault(vault.expanduser().resolve(), args.date, args.dry_run, args.idea_id)
         if item:
             stats.append(item)
 

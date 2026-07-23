@@ -2,8 +2,9 @@
 
 ```text
 idea
-  -> domain routing
-  -> Postgraduate vault
+  -> existing-postgraduate fit audit
+  -> assignment note
+  -> reuse a suitable Postgraduate vault or create a new one
   -> literature map and paper master
   -> lawful PDF/full text + BibTeX
   -> strict paper cards
@@ -18,5 +19,7 @@ idea
 ```
 
 The paper card, paper master, PDF, extracted full text, and BibTeX form the authoritative literature layer. Compact memory is the default machine recall layer. Hyper-Extract is optional and remains subordinate to evidence validation.
+
+The assignment gate runs for every new research task. A vault is reusable only when it owns the primary research object and contains directly transferable evidence; generic method overlap is not enough. Persist the decision at `wiki/meta/<idea-id>-postgraduate-assignment.md` before literature work.
 
 Each stage writes resumable artifacts. Failed units do not invalidate completed units. Corpus-level idea support, refutation, contrarian hypotheses, and experiments are produced after evidence retrieval rather than duplicated during every paper ingestion. The final knowledge profile summarizes existing artifacts deterministically and does not replace human research evaluation.

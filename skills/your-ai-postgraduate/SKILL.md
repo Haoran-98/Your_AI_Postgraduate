@@ -10,14 +10,16 @@ Treat each `Postgraduate_<EnglishDomainSlug>` vault as one domain-specific postg
 ## Start
 
 1. Read `../postgraduate-common/references/governance.md` and `references/routing-table.md`.
-2. Identify the target vault, current stage, requested depth, source permissions, model/API availability, and persistence requirement.
-3. Read the target vault's `wiki/index.md` and `wiki/hot.md` when they exist.
-4. Route only to the child skills needed for the current task.
-5. Enforce stage gates before advancing.
+2. For every new research task, apply `../postgraduate-common/references/researcher-assignment-policy.md` through `postgraduate-domain-router` before selecting a vault.
+3. Record the decision in `wiki/meta/<idea-id>-postgraduate-assignment.md`; reuse only when domain ownership and direct transferable knowledge both exist.
+4. Identify the target vault, current stage, requested depth, source permissions, model/API availability, and persistence requirement.
+5. Read the target vault's `wiki/index.md` and `wiki/hot.md` when they exist.
+6. Route only to the child skills needed for the current task.
+7. Enforce stage gates before advancing.
 
 ## Stage Order
 
-1. Route domain and create the vault.
+1. Audit existing postgraduate fit, assign the task, and create a vault only when none fits.
 2. Ingest the idea and create durable notes.
 3. Search and screen literature.
 4. Acquire lawful full text and bibliography.
@@ -42,6 +44,7 @@ Do not force every request through every stage. Resume from durable artifacts al
 - Every model call is auditable by paper, task, model tier, token count, latency, and retry state.
 - Knowledge profiles reflect current stored artifacts and gaps; they do not measure permanent ability or scientific novelty.
 - Public repositories exclude credentials, private ideas, copyrighted corpora, PDFs without redistribution rights, and machine-specific paths.
+- Every new research task has a durable postgraduate-assignment note before literature work begins.
 
 ## References
 

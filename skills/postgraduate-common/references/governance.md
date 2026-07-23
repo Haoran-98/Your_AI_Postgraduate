@@ -3,6 +3,7 @@
 - Name every domain vault `Postgraduate_<EnglishDomainSlug>`.
 - Use English ASCII slugs for generated folders and files; source-language titles may remain in note content.
 - Keep domains independent. Do not create a global `Postgraduate_Common` vault.
+- Before every new research task, apply `researcher-assignment-policy.md` and persist the assignment decision before literature work.
 - Embed causal methods inside each domain vault and connect them with domain-specific causal bridges.
 - Preserve `.raw/` sources. Write synthesized durable knowledge under `wiki/`.
 - Read `wiki/index.md` and `wiki/hot.md` before meaningful changes.

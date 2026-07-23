@@ -164,7 +164,14 @@ def markdown_section(text: str, heading: str) -> str:
     return text[start:] if next_heading < 0 else text[start:next_heading]
 
 
-def idea_id_from_vault(wiki: Path) -> tuple[str, Path] | None:
+def idea_id_from_vault(wiki: Path, requested: str | None = None) -> tuple[str, Path] | None:
+    if requested:
+        for path in sorted((wiki / "ideas").glob(f"{requested}-*.md")):
+            return requested, path
+        for path in sorted(wiki.rglob(f"{requested}-*.md")):
+            return requested, path
+        return None
+
     cards = sorted((wiki / "ideas").glob("idea-*-direction-card.md")) if (wiki / "ideas").exists() else []
     if cards:
         match = re.search(r"(idea-\d+)", cards[0].name)
@@ -206,6 +213,8 @@ def load_papers(wiki: Path, idea_id: str) -> list[Paper]:
         return papers
     for path in sorted(folder.glob("P*.md")):
         paper_id = path.name.split("-", 1)[0]
+        if rows and paper_id not in rows:
+            continue
         text = read_text(path)
         title = rows.get(paper_id, {}).get("title") or h1(path)
         paper = Paper(paper_id=paper_id, title=title, path=path, fields=rows.get(paper_id, {}), text=text)
@@ -468,11 +477,18 @@ def update_relation_entries(wiki: Path, semantic_map: Path, idea_id: str, today:
         write_text(log, text, dry_run)
 
 
-def process_vault(vault: Path, today: str, dry_run: bool, minimum: int, top_edges: int) -> dict[str, int | str] | None:
+def process_vault(
+    vault: Path,
+    today: str,
+    dry_run: bool,
+    minimum: int,
+    top_edges: int,
+    requested_idea_id: str | None = None,
+) -> dict[str, int | str] | None:
     wiki = vault / "wiki"
     if not wiki.exists():
         return None
-    detected = idea_id_from_vault(wiki)
+    detected = idea_id_from_vault(wiki, requested_idea_id)
     if not detected:
         return None
     idea_id, _idea_card = detected
@@ -554,6 +570,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Generate heuristic semantic clusters inside Postgraduate vaults.")
     parser.add_argument("--root", default="~/auto-research", help="Root containing Postgraduate_* vaults.")
     parser.add_argument("--vault", action="append", default=[], help="Specific vault path or name; may be repeated.")
+    parser.add_argument("--idea-id", help="Generate semantic relations for this idea instead of auto-detecting one.")
     parser.add_argument("--date", default=date.today().isoformat(), help="Date written to frontmatter/logs.")
     parser.add_argument("--min-cluster-size", type=int, default=2, help="Minimum paper count for a semantic cluster.")
     parser.add_argument("--top-edges", type=int, default=80, help="Maximum paper similarity edges per vault.")
@@ -563,7 +580,14 @@ def main() -> int:
     root = Path(args.root).expanduser().resolve()
     stats = []
     for vault in select_vaults(root, args.vault):
-        item = process_vault(vault.expanduser().resolve(), args.date, args.dry_run, args.min_cluster_size, args.top_edges)
+        item = process_vault(
+            vault.expanduser().resolve(),
+            args.date,
+            args.dry_run,
+            args.min_cluster_size,
+            args.top_edges,
+            args.idea_id,
+        )
         if item:
             stats.append(item)
 

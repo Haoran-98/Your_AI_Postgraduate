@@ -2,7 +2,7 @@
 
 | Request | Child skill |
 | --- | --- |
-| Classify a domain or choose/create a vault | `postgraduate-domain-router` |
+| Audit existing researcher fit, classify a domain, or choose/create a vault | `postgraduate-domain-router` |
 | Create an Obsidian-ready vault | `postgraduate-vault-scaffolder` |
 | Import IDEA markdown | `postgraduate-idea-ingestor` |
 | Explore an idea and generate evidence-backed variants | `postgraduate-autoresearch` |

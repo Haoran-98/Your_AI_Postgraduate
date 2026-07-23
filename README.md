@@ -14,6 +14,7 @@ This repository documents and publishes existing methods only. It does not intro
 This system is designed to:
 
 - create an independent `Postgraduate_<EnglishDomainSlug>` Obsidian vault for each research domain;
+- audit current postgraduate knowledge before every new research task, reuse a researcher only when its domain and stored evidence fit, and create a new one otherwise;
 - turn IDEA notes, paper metadata, and lawfully acquired full text into traceable research knowledge;
 - preserve authors, affiliations, source, URL, DOI, citation key, and BibTeX for every paper;
 - read full papers strictly and extract research questions, methods, variables, datasets, experiments, findings, limitations, mechanisms, support, counterevidence, contrarian hypotheses, and validation experiments;
@@ -98,7 +99,8 @@ The parent Skill identifies the current stage, enforces gates, and routes work. 
 
 ```text
 IDEA
-  -> domain routing and vault initialization
+  -> existing-postgraduate fit audit and durable assignment note
+  -> reuse a suitable vault or initialize a new one
   -> literature search, screening, and paper master
   -> lawful full text, OCR, and BibTeX
   -> strict full-text paper cards
@@ -113,6 +115,8 @@ IDEA
 ```
 
 Every stage writes resumable artifacts. Long papers are saved as independent parts, and only failed units are retried. Paper cards, paper masters, PDFs, full text, and BibTeX remain the authoritative literature layer. Compact paper memory is the default machine recall layer; Hyper-Extract is an optional exhaustive lower-level extractor.
+
+Every new research task must first inspect existing vault profiles, indexes, hot caches, and direct RAG matches. Reuse requires both domain ownership and directly transferable stored knowledge; generic method overlap alone does not qualify. The decision is saved as `wiki/meta/<idea-id>-postgraduate-assignment.md` before literature work starts.
 
 ## Artifact Layout
 
