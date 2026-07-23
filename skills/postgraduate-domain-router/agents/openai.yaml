@@ -1,4 +1,4 @@
 interface:
   display_name: "Postgraduate Researcher Router"
-  short_description: "Assign new research to an existing or new postgraduate"
-  default_prompt: "Use $postgraduate-domain-router to audit existing postgraduate fit, persist the assignment, and create a new vault only when none qualifies."
+  short_description: "Assign research to a postgraduate and research line"
+  default_prompt: "Use $postgraduate-domain-router to audit existing postgraduate fit, persist the assignment, and register a research line or create a new vault."

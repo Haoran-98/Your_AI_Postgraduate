@@ -15,6 +15,7 @@ This system is designed to:
 
 - create an independent `Postgraduate_<EnglishDomainSlug>` Obsidian vault for each research domain;
 - audit current postgraduate knowledge before every new research task, reuse a researcher only when its domain and stored evidence fit, and create a new one otherwise;
+- maintain multiple separately traceable research lines inside one suitable domain postgraduate instead of creating one vault per idea;
 - turn IDEA notes, paper metadata, and lawfully acquired full text into traceable research knowledge;
 - preserve authors, affiliations, source, URL, DOI, citation key, and BibTeX for every paper;
 - read full papers strictly and extract research questions, methods, variables, datasets, experiments, findings, limitations, mechanisms, support, counterevidence, contrarian hypotheses, and validation experiments;
@@ -118,6 +119,8 @@ Every stage writes resumable artifacts. Long papers are saved as independent par
 
 Every new research task must first inspect existing vault profiles, indexes, hot caches, and direct RAG matches. Reuse requires both domain ownership and directly transferable stored knowledge; generic method overlap alone does not qualify. The decision is saved as `wiki/meta/<idea-id>-postgraduate-assignment.md` before literature work starts.
 
+When a postgraduate is reused, the project is registered under `wiki/research-lines/`. Research lines share domain knowledge and retrieval infrastructure but retain separate paper masters, claims, hypotheses, experiments, and evidence ownership.
+
 ## Artifact Layout
 
 ```text
@@ -129,6 +132,7 @@ Postgraduate_<EnglishDomainSlug>/
     hot.md
     log.md
     ideas/
+    research-lines/
     papers/
     datasets/
     variables/

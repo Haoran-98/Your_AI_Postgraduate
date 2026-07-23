@@ -14,8 +14,9 @@ Read `../postgraduate-common/references/governance.md`, `routing-policy.md`, `re
 3. Reuse a postgraduate only when both domain ownership and directly transferable stored knowledge are present.
 4. Prefer Education, Military, Information_Opinion, or Mental_Health when one passes the assignment gate.
 5. Create a new English domain slug when no existing vault passes; generic method overlap alone is insufficient.
-6. Write `wiki/meta/<idea-id>-postgraduate-assignment.md` before downstream research begins.
-7. Output the selected `Postgraduate_<EnglishDomainSlug>`, evidence, reuse boundaries, and rationale.
-8. Never merge unrelated ideas into a broad global vault.
+6. Register a passing project under `wiki/research-lines/` and keep its paper master, claims, hypotheses, and experiments idea-scoped.
+7. Write `wiki/meta/<idea-id>-postgraduate-assignment.md` before downstream research begins.
+8. Output the selected `Postgraduate_<EnglishDomainSlug>`, research line, evidence, reuse boundaries, and rationale.
+9. Never merge unrelated ideas into a broad global vault.
 
 Chinese text may remain in note content, but generated paths use English ASCII slugs.

@@ -11,7 +11,7 @@ Treat each `Postgraduate_<EnglishDomainSlug>` vault as one domain-specific postg
 
 1. Read `../postgraduate-common/references/governance.md` and `references/routing-table.md`.
 2. For every new research task, apply `../postgraduate-common/references/researcher-assignment-policy.md` through `postgraduate-domain-router` before selecting a vault.
-3. Record the decision in `wiki/meta/<idea-id>-postgraduate-assignment.md`; reuse only when domain ownership and direct transferable knowledge both exist.
+3. Record the decision in `wiki/meta/<idea-id>-postgraduate-assignment.md`; reuse only when domain ownership and direct transferable knowledge both exist, then register the project under `wiki/research-lines/`.
 4. Identify the target vault, current stage, requested depth, source permissions, model/API availability, and persistence requirement.
 5. Read the target vault's `wiki/index.md` and `wiki/hot.md` when they exist.
 6. Route only to the child skills needed for the current task.

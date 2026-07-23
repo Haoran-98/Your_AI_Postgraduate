@@ -20,7 +20,7 @@ python "$YOUR_AI_POSTGRADUATE_HOME/scripts/generate_postgraduate_profile.py" \
   --language en
 ```
 
-4. Inspect the generated counts, dimension scores, top entities, ranked task fit, and explicit limitations.
+4. Inspect the generated research lines, counts, dimension scores, top entities, ranked task fit, and explicit limitations.
 5. Treat recommendations as current artifact readiness, not permanent ability, researcher quality, or evidence that a scientific idea is novel.
 6. Rebuild the provider-neutral RAG corpus when the generated Markdown profile should become retrievable.
 
@@ -38,4 +38,5 @@ The profiler may update `wiki/index.md`, `wiki/hot.md`, and `wiki/log.md` with l
 - Keep blocked papers visible in coverage metrics but exclude them from verified evidence.
 - Preserve the distinction between exact, layout-recovered, machine-reviewed, and human-verified evidence.
 - Explain every recommendation through visible dimension scores and source counts.
+- Display registered research lines separately from shared domain knowledge and capability.
 - Recommend research task types and domain focus, not employment, admissions, or high-stakes personal decisions.

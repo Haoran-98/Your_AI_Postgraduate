@@ -74,6 +74,19 @@ evidence_level: blocked
                 path.write_text("# Test\n", encoding="utf-8")
             for name in ["index.md", "hot.md", "log.md"]:
                 (vault / "wiki" / name).write_text(f"# {name}\n", encoding="utf-8")
+            research_lines = vault / "wiki/research-lines"
+            research_lines.mkdir(parents=True)
+            (research_lines / "example-line.md").write_text(
+                """---
+type: research-line
+research_line: example-line
+idea_id: idea-01
+status: active
+---
+# Research Line: Example Line
+""",
+                encoding="utf-8",
+            )
 
             profile = build_profile(vault, "en")
             self.assertEqual(profile["counts"]["paper_cards"], 2)
@@ -82,6 +95,8 @@ evidence_level: blocked
             self.assertEqual(profile["counts"]["causal_edges"], 1)
             self.assertEqual(profile["top_entities"][0], {"name": "Tutor", "count": 2})
             self.assertEqual(len(profile["task_fit"]), 6)
+            self.assertEqual(profile["counts"]["research_lines"], 1)
+            self.assertEqual(profile["research_lines"][0]["idea_id"], "idea-01")
 
             outputs = write_profile(vault, profile)
             self.assertTrue(outputs["markdown"].exists())
@@ -89,6 +104,7 @@ evidence_level: blocked
             self.assertTrue(outputs["json"].exists())
             self.assertIn("POSTGRADUATE-PROFILE-START", (vault / "wiki/index.md").read_text(encoding="utf-8"))
             self.assertIn("Capability Visualization", outputs["markdown"].read_text(encoding="utf-8"))
+            self.assertIn("Example Line", outputs["markdown"].read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

@@ -13,6 +13,9 @@ INVALID = '<>:"/\\|?*'
 
 DOMAIN_TRANSLATIONS = {
     "教育": "Education",
+    "教育AI": "Education_AI",
+    "教育_AI学伴": "Education_AI",
+    "AI学伴": "Education_AI",
     "军事": "Military",
     "信息舆论": "Information_Opinion",
     "心理健康": "Mental_Health",
@@ -204,6 +207,7 @@ def create_domain(root: Path, domain: str) -> Path:
         "wiki/papers",
         "wiki/surveys",
         "wiki/ideas",
+        "wiki/research-lines",
         "wiki/relations",
         "wiki/relations/semantic",
         "wiki/experiments",

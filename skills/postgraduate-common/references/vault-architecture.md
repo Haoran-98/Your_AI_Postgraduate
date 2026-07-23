@@ -22,6 +22,7 @@ Postgraduate_<EnglishDomainSlug>/
     datasets/
     papers/
     ideas/
+    research-lines/
     relations/
       semantic/
     profile/
@@ -29,3 +30,5 @@ Postgraduate_<EnglishDomainSlug>/
 ```
 
 Do not create `Postgraduate_Common`. Repeated causal knowledge is copied or adapted inside each domain vault.
+
+One domain postgraduate may own multiple research lines. Register each line under `wiki/research-lines/`, keep its idea-specific evidence separately traceable, and share only genuinely reusable domain knowledge and infrastructure.

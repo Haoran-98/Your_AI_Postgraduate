@@ -20,3 +20,4 @@ python scripts/prepare_rag_corpus.py --root "$RESEARCH_ROOT"
 - Store bibliography once per paper and reference it from memories.
 - Preserve source chunk IDs so retrieval can rehydrate original evidence.
 - Keep JSONL independent of any specific vector database.
+- For multi-project vaults, record all `idea_ids` and use a vault-level RAG note instead of assigning shared retrieval data to the first idea.

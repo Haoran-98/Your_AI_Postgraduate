@@ -12,8 +12,9 @@ Read `../postgraduate-common/references/idea-batch-ingestion.md`, `obsidian-writ
 1. Record input file, output root, idea count, routing table, new domains, smoke-test target, and requested depth.
 2. Route each idea with `postgraduate-domain-router`.
 3. Preserve the source under `.raw/idea-XX-<slug>.md`.
-4. Create `wiki/ideas/idea-XX-<slug>.md` with seed, public search keywords, knowledge slots, literature map, dataset candidates, gaps, and next tasks.
-5. Update index, hot, and log pages.
-6. For a smoke test, verify exactly one idea without starting full literature research unless requested.
+4. Register or update the assigned project under `wiki/research-lines/`.
+5. Create `wiki/ideas/idea-XX-<slug>.md` with seed, public search keywords, knowledge slots, literature map, dataset candidates, gaps, and next tasks.
+6. Update index, hot, and log pages.
+7. For a smoke test, verify exactly one idea without starting full literature research unless requested.
 
 Convert private idea details into public-safe keywords before web search.

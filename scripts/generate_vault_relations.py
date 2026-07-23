@@ -322,11 +322,16 @@ def update_global_readme(root: Path, stats: list[VaultStats], dry_run: bool) -> 
         "",
         "## Relation Maps",
         "",
-        "Each idea vault has an internal Obsidian graph hub.",
+        "Each research idea has an internal Obsidian graph hub inside its owning postgraduate vault.",
     ]
-    for item in sorted(stats, key=lambda value: value.idea_id):
-        rel = f"{item.vault.name}/wiki/relations/{item.idea_id}-relation-map.md"
-        lines.append(f"- {item.idea_id}: [{item.vault.name} relation map]({rel})")
+    for relation_map in sorted(root.glob("Postgraduate_*/wiki/relations/idea-*-relation-map.md")):
+        vault = relation_map.parents[2]
+        match = re.search(r"(idea-\d+)-relation-map", relation_map.name)
+        if not match:
+            continue
+        idea_id = match.group(1)
+        rel = relation_map.relative_to(root).as_posix()
+        lines.append(f"- {idea_id}: [{vault.name} relation map]({rel})")
     lines.append("<!-- RELATION-MAPS-END -->")
     text = upsert_marker(read_text(readme), "RELATION-MAPS", "\n".join(lines))
     write_text(readme, text, dry_run)

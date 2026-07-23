@@ -9,6 +9,7 @@ sys.path.insert(0, str(SCRIPTS))
 
 import generate_semantic_relations as semantic
 import generate_vault_relations as relations
+import prepare_rag_corpus as rag_builder
 
 
 class MultiIdeaRelationTests(unittest.TestCase):
@@ -39,6 +40,40 @@ class MultiIdeaRelationTests(unittest.TestCase):
             semantic_stats = semantic.process_vault(vault, "2026-07-23", False, 2, 80, "idea-02")
             self.assertEqual(semantic_stats["idea_id"], "idea-02")
             self.assertEqual(semantic_stats["papers"], 1)
+
+    def test_global_readme_keeps_all_discovered_relation_maps(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "README.md").write_text("# Root\n", encoding="utf-8")
+            for vault_name, idea_id in (("Postgraduate_A", "idea-01"), ("Postgraduate_B", "idea-02")):
+                relation_dir = root / vault_name / "wiki/relations"
+                relation_dir.mkdir(parents=True)
+                (relation_dir / f"{idea_id}-relation-map.md").write_text("# Map\n", encoding="utf-8")
+
+            relations.update_global_readme(root, [], False)
+            readme = (root / "README.md").read_text(encoding="utf-8")
+            self.assertIn("Postgraduate_A/wiki/relations/idea-01-relation-map.md", readme)
+            self.assertIn("Postgraduate_B/wiki/relations/idea-02-relation-map.md", readme)
+
+    def test_multi_idea_vault_gets_vault_level_rag_note(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            vault = Path(temporary) / "Postgraduate_Test"
+            (vault / "wiki").mkdir(parents=True)
+            (vault / "wiki/index.md").write_text("# Index\n", encoding="utf-8")
+            manifest = {
+                "idea_id": "multiple",
+                "idea_ids": ["idea-01", "idea-02"],
+                "generated": "2026-07-23",
+                "records": 2,
+                "source_type_counts": {"paper-fulltext": 2},
+                "hyperextract_status": "pending-model-execution",
+            }
+
+            rag_builder.write_vault_rag_note(vault, manifest)
+            note = vault / "wiki/relations/vault-rag-layer.md"
+            self.assertTrue(note.exists())
+            self.assertIn('idea_ids: ["idea-01", "idea-02"]', note.read_text(encoding="utf-8"))
+            self.assertIn("vault-rag-layer", (vault / "wiki/index.md").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

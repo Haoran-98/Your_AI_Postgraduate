@@ -380,9 +380,11 @@ def upsert_marker(text: str, content: str) -> str:
 
 def write_vault_rag_note(vault: Path, manifest: dict[str, object]) -> None:
     idea_id = str(manifest.get("idea_id", "idea-xx"))
+    idea_ids = [str(value) for value in manifest.get("idea_ids", [idea_id])]
+    multi_idea = len(idea_ids) > 1
     relations = vault / "wiki/relations"
     relations.mkdir(parents=True, exist_ok=True)
-    note = relations / f"{idea_id}-rag-layer.md"
+    note = relations / ("vault-rag-layer.md" if multi_idea else f"{idea_id}-rag-layer.md")
     counts = manifest["source_type_counts"]
     fulltext = counts.get("paper-fulltext", 0)
     cards = counts.get("paper-card", 0)
@@ -391,15 +393,17 @@ type: rag-layer
 domain: {vault.name.replace('Postgraduate_', '')}
 status: active
 updated: {manifest['generated']}
-idea_id: {idea_id}
+idea_id: {"multiple" if multi_idea else idea_id}
+idea_ids: {json.dumps(idea_ids)}
 evidence_level: mixed-filter-required
 ---
 
-# {idea_id} RAG And Hyper-Extract Layer
+# {"Vault" if multi_idea else idea_id} RAG And Hyper-Extract Layer
 
 ## Current State
 
 - RAG records: {manifest['records']}.
+- Research lines: {', '.join(idea_ids)}.
 - Paper full-text chunks: {fulltext}.
 - Paper-card chunks: {cards}.
 - Hyper-Extract status: `{manifest['hyperextract_status']}`.
@@ -519,18 +523,17 @@ def main() -> int:
                         counts[source_type] += 1
                         global_counts[source_type] += 1
                         record_count += 1
+            idea_ids = sorted({
+                str(parse_frontmatter(card.read_text(encoding="utf-8", errors="ignore"))[0].get("idea_id", "idea-xx"))
+                for row in rows
+                if (card := paper_card(vault, row["id"])) is not None
+            })
             manifest = {
                 "schema_version": SCHEMA_VERSION,
                 "generated": date.today().isoformat(),
                 "vault": vault.name,
-                "idea_id": next(
-                    (
-                        parse_frontmatter(card.read_text(encoding="utf-8", errors="ignore"))[0].get("idea_id", "idea-xx")
-                        for row in rows
-                        if (card := paper_card(vault, row["id"])) is not None
-                    ),
-                    "idea-xx",
-                ),
+                "idea_id": idea_ids[0] if len(idea_ids) == 1 else "multiple",
+                "idea_ids": idea_ids,
                 "records": record_count,
                 "chunk_size": args.chunk_size,
                 "overlap": args.overlap,

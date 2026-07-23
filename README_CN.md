@@ -15,6 +15,7 @@
 
 - 为每个研究领域建立独立的 `Postgraduate_<EnglishDomainSlug>` Obsidian 知识库；
 - 每次新增调研任务前先审计已有研究生的知识与适配度，仅在领域归属和已有直接证据同时匹配时复用，否则新建研究生；
+- 一个合适的领域研究生可以维护多条独立可追溯的研究分支，不再为每个 idea 单独创建 vault；
 - 从 IDEA、论文元数据和合法取得的全文逐步形成可追溯研究知识；
 - 保存论文作者、机构、来源、链接、DOI、citation key 与 BibTeX；
 - 对全文进行严格阅读，并提取研究问题、方法、变量、数据集、实验、发现、局限、机制、支撑、反证、反直觉假设与验证实验；
@@ -118,6 +119,8 @@ IDEA
 
 每个新调研任务必须先检查已有 vault 的画像、索引、热缓存和直接 RAG 命中。只有领域归属与可直接迁移的已存知识同时满足时才复用；仅有通用方法重合不算适配。分配结果必须在文献调研开始前保存为 `wiki/meta/<idea-id>-postgraduate-assignment.md`。
 
+复用研究生时，新项目登记在 `wiki/research-lines/`。不同研究分支共享领域知识与检索基础设施，但分别维护 paper master、claim、假设、实验和证据归属。
+
 ## 产物结构
 
 ```text
@@ -129,6 +132,7 @@ Postgraduate_<EnglishDomainSlug>/
     hot.md
     log.md
     ideas/
+    research-lines/
     papers/
     datasets/
     variables/

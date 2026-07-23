@@ -11,6 +11,7 @@ Postgraduate_<EnglishDomainSlug>/
     hot.md
     log.md
     ideas/
+    research-lines/
     papers/
     datasets/
     variables/
@@ -56,6 +57,8 @@ Each JSONL record contains a stable ID, retrieval text, content hash when availa
 ## Corpus-Level Notes
 
 Create or update variables, mechanisms, datasets/artifacts, supported claims, contrarian hypotheses/tests, causal assumptions, source expansion, survey, index, hot, and log pages.
+
+Use `wiki/research-lines/` to register separately traceable projects owned by the same domain postgraduate. Shared storage does not merge their paper masters, claims, hypotheses, or experiments.
 
 ## Postgraduate Knowledge Profile
 

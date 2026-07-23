@@ -12,6 +12,8 @@ Apply this gate before every new research task, including a new idea inside an e
 4. Do not reuse a vault based only on generic causal, LLM, statistical, or research-method overlap.
 5. If no vault passes both conditions, create a new `Postgraduate_<EnglishDomainSlug>` vault.
 
+When an existing postgraduate passes the gate, register the new project as a separate page under `wiki/research-lines/`. A research line owns its idea notes, paper master, claims, hypotheses, and experiments while reusing the vault's domain knowledge, methods, bibliography infrastructure, and RAG memory.
+
 ## Durable Decision
 
 Write `wiki/meta/<idea-id>-postgraduate-assignment.md` in the selected or newly created vault. Record:
@@ -21,5 +23,6 @@ Write `wiki/meta/<idea-id>-postgraduate-assignment.md` in the selected or newly 
 - assignment decision and rationale;
 - reuse boundaries and missing capabilities;
 - whether a new vault was created.
+- the research-line identifier created or reused inside the selected vault.
 
 The assignment note is required before literature search or idea ingestion proceeds. Reassess the assignment when the research object changes materially.

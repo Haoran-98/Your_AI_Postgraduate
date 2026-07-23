@@ -19,6 +19,6 @@ python scripts/scaffold_postgraduate_vault.py \
 
 - Vault name follows `Postgraduate_<EnglishDomainSlug>`.
 - `.obsidian/app.json`, `core-plugins.json`, and `workspace.json` exist.
-- `.raw/` and all required `wiki/` role folders exist.
+- `.raw/`, `wiki/research-lines/`, and all required `wiki/` role folders exist.
 - `wiki/index.md`, `wiki/hot.md`, and `wiki/log.md` exist.
 - Existing files are preserved.

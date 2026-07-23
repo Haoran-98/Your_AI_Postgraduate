@@ -1,4 +1,4 @@
 interface:
   display_name: "Your AI Postgraduate"
   short_description: "Assign and route the evidence-grounded research workflow"
-  default_prompt: "Use $your-ai-postgraduate to assign this research task to the best existing postgraduate or create one, then execute the required evidence-grounded stages."
+  default_prompt: "Use $your-ai-postgraduate to assign this task to a postgraduate research line and execute the required evidence-grounded stages."

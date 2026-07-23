@@ -195,6 +195,30 @@ def domain_name(vault: Path) -> str:
     return value or vault.name
 
 
+def registered_research_lines(wiki: Path) -> list[dict[str, str]]:
+    result: list[dict[str, str]] = []
+    folder = wiki / "research-lines"
+    if not folder.exists():
+        return result
+    for path in sorted(folder.glob("*.md")):
+        metadata = frontmatter(path)
+        if metadata.get("type") != "research-line":
+            continue
+        title = path.stem.replace("-", " ").title()
+        for line in path.read_text(encoding="utf-8", errors="ignore").splitlines():
+            if line.startswith("# "):
+                title = line[2:].removeprefix("Research Line:").strip()
+                break
+        result.append({
+            "key": str(metadata.get("research_line") or path.stem),
+            "title": title,
+            "idea_id": str(metadata.get("idea_id") or ""),
+            "status": str(metadata.get("status") or "unknown"),
+            "path": f"wiki/research-lines/{path.name}",
+        })
+    return result
+
+
 def readiness_level(score: float, language: str, core_score: float | None = None) -> str:
     if score >= 80 and (core_score is None or core_score >= 80):
         return "ready now" if language == "en" else "当前可重点承担"
@@ -207,6 +231,7 @@ def build_profile(vault: Path, language: str = "en") -> dict[str, Any]:
     wiki = vault / "wiki"
     rag = vault / "rag"
     memory_root = rag / "paper-memory"
+    research_lines = registered_research_lines(wiki)
 
     cards = sorted((wiki / "papers").glob("P*.md")) if (wiki / "papers").exists() else []
     statuses: Counter[str] = Counter()
@@ -391,6 +416,7 @@ def build_profile(vault: Path, language: str = "en") -> dict[str, Any]:
             "source_rag_records": rag_records,
             "memory_rag_records": memory_corpus_records,
             "unique_venues": len(venues),
+            "research_lines": len(research_lines),
         },
         "paper_statuses": dict(statuses),
         "paper_evidence_levels": dict(evidence_levels),
@@ -402,6 +428,7 @@ def build_profile(vault: Path, language: str = "en") -> dict[str, Any]:
         "rag_source_types": dict(source_type_counts.most_common()),
         "rag_evidence_levels": dict(rag_evidence_counts.most_common()),
         "top_entities": top_entities,
+        "research_lines": research_lines,
         "dimension_components": components,
         "dimensions": dimensions,
         "task_fit": task_fit,
@@ -472,6 +499,19 @@ def markdown_report(profile: dict[str, Any]) -> str:
         f"- {'已验证知识记忆' if zh else 'Validated knowledge memories'}: **{counts['validated_memories']}**",
         f"- {'因果边' if zh else 'Causal edges'}: **{counts['causal_edges']}**",
         f"- {'RAG 记录' if zh else 'RAG records'}: **{counts['source_rag_records'] + counts['memory_rag_records']}**",
+        f"- {'研究分支' if zh else 'Research lines'}: **{counts['research_lines']}**",
+        "",
+        f"## {'研究分支' if zh else 'Research Lines'}",
+        "",
+        f"| Idea | {'分支' if zh else 'Line'} | {'状态' if zh else 'Status'} |",
+        "| --- | --- | --- |",
+    ]
+    for item in profile["research_lines"]:
+        lines.append(f"| {item['idea_id'] or '-'} | [{item['title']}](../../{item['path']}) | {item['status']} |")
+    if not profile["research_lines"]:
+        lines.append(f"| - | {'尚未登记研究分支' if zh else 'No registered research lines'} | - |")
+
+    lines.extend([
         "",
         f"## {'能力维度可视化' if zh else 'Capability Visualization'}",
         "",
@@ -484,7 +524,7 @@ def markdown_report(profile: dict[str, Any]) -> str:
         "",
         f"| {'维度' if zh else 'Dimension'} | {'分数' if zh else 'Score'} | {'状态' if zh else 'Readiness'} |",
         "| --- | ---: | --- |",
-    ]
+    ])
     for key, score in dimensions.items():
         lines.append(f"| {DIMENSION_LABELS[key][language]} | {score:.1f} | {readiness_level(score, language)} |")
 
@@ -592,6 +632,10 @@ def html_report(profile: dict[str, Any]) -> str:
         f"<tr><td>{html.escape(source_names[item['key']])}</td><td>{item['count']}</td><td><a href=\"{source_links[item['key']]}\"><code>{html.escape(item['path'])}</code></a></td></tr>"
         for item in profile["source_paths"]
     )
+    research_line_rows = "".join(
+        f'<tr><td>{html.escape(item["idea_id"] or "-")}</td><td><a href="../../{html.escape(item["path"])}"><strong>{html.escape(item["title"])}</strong></a></td><td>{html.escape(item["status"])}</td></tr>'
+        for item in profile["research_lines"]
+    ) or f'<tr><td>-</td><td>{"尚未登记研究分支" if zh else "No registered research lines"}</td><td>-</td></tr>'
     best = profile["best_fit"] or {"title": "-", "score": 0}
     note = (
         "该建议表示当前产物最支持的任务，不表示永久能力，也不能替代人工科研判断。"
@@ -658,6 +702,8 @@ def html_report(profile: dict[str, Any]) -> str:
   </section>
 
   <div class="recommendation"><strong>{'首要建议' if zh else 'Primary recommendation'}:</strong> {html.escape(best['title'])} ({best['score']:.1f}/100). <span class="muted">{html.escape(note)}</span></div>
+
+  <section class="panel" style="margin-bottom:16px"><h2>{'研究分支' if zh else 'Research Lines'}</h2><table><thead><tr><th>Idea</th><th>{'分支' if zh else 'Line'}</th><th>{'状态' if zh else 'Status'}</th></tr></thead><tbody>{research_line_rows}</tbody></table></section>
 
   <section class="columns">
     <div class="panel"><h2>{'能力维度' if zh else 'Capability dimensions'}</h2>{dimension_rows}</div>
