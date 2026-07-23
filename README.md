@@ -121,6 +121,8 @@ Every new research task must first inspect existing vault profiles, indexes, hot
 
 When a postgraduate is reused, the project is registered under `wiki/research-lines/`. Research lines share domain knowledge and retrieval infrastructure but retain separate paper masters, claims, hypotheses, experiments, and evidence ownership.
 
+The hierarchy stops at two levels: broad domain postgraduate -> research line. Research lines are peers and cannot contain nested sub-lines.
+
 ## Artifact Layout
 
 ```text

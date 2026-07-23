@@ -19,4 +19,6 @@ Read `../postgraduate-common/references/governance.md`, `routing-policy.md`, `re
 8. Output the selected `Postgraduate_<EnglishDomainSlug>`, research line, evidence, reuse boundaries, and rationale.
 9. Never merge unrelated ideas into a broad global vault.
 
+Use exactly two levels: broad domain postgraduate and peer research lines. Never route a project into a nested sub-line.
+
 Chinese text may remain in note content, but generated paths use English ASCII slugs.

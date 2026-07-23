@@ -14,6 +14,8 @@ Apply this gate before every new research task, including a new idea inside an e
 
 When an existing postgraduate passes the gate, register the new project as a separate page under `wiki/research-lines/`. A research line owns its idea notes, paper master, claims, hypotheses, and experiments while reusing the vault's domain knowledge, methods, bibliography infrastructure, and RAG memory.
 
+The hierarchy is exactly two levels: broad domain postgraduate -> research line. Do not create nested sub-lines or a third project level.
+
 ## Durable Decision
 
 Write `wiki/meta/<idea-id>-postgraduate-assignment.md` in the selected or newly created vault. Record:
