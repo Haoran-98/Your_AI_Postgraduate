@@ -1,6 +1,6 @@
 ---
 name: your-ai-postgraduate
-description: "Orchestrate the complete Your AI Postgraduate research system. Use when the user asks to start, plan, continue, inspect, or complete a multi-stage research project spanning ideas, literature, full text, paper memory, causal knowledge, RAG, knowledge visualization, task-fit profiling, cost control, quality gates, and Git synchronization."
+description: "Orchestrate the complete Your AI Postgraduate research system. Use when the user asks to start, plan, continue, inspect, or complete a multi-stage research project spanning ideas, literature, full text, paper memory, causal knowledge, RAG, knowledge visualization, task-fit profiling, cost control, quality gates, and Git synchronization. Also use for Chinese requests about AI 研究生, 自动科研, 深度调研, 因果知识库, 论文记忆, or 长期科研知识积累."
 ---
 
 # Your AI Postgraduate

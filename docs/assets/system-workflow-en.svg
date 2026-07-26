@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Turn one research task into a postgraduate that keeps learning</title>
+<desc id="desc">From ideas and full text to causal knowledge, RAG recall, and auditable versions</desc>
+<defs>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#17212B" flood-opacity="0.10"/></filter>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7B8794"/></marker>
+<style>text{font-family:"Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif;letter-spacing:0}.title{font-size:38px;font-weight:700;fill:#17212B}.subtitle{font-size:18px;fill:#5B6773}.eyebrow{font-size:14px;font-weight:700;fill:#087F73}.card-title{font-size:21px;font-weight:700;fill:#17212B}.compact{font-size:17px;font-weight:700;fill:#17212B}.body{font-size:16px;fill:#5B6773}.small{font-size:14px;fill:#5B6773}.step{font-size:13px;font-weight:700;fill:#FFFFFF}.white{fill:#FFFFFF}.mono{font-family:"Noto Sans Mono CJK SC","SFMono-Regular",Consolas,monospace}</style>
+</defs>
+<rect width="1600" height="900" fill="#F7F8FA"/>
+<text x="90" y="64" class="eyebrow" text-anchor="start">YOUR AI POSTGRADUATE</text>
+<text x="90" y="112" class="title" text-anchor="start">Turn one research task into a postgraduate that keeps learning</text>
+<text x="90" y="148" class="subtitle" text-anchor="start">From ideas and full text to causal knowledge, RAG recall, and auditable versions</text>
+<line x1="90" y1="176" x2="1510" y2="176" stroke="#CAD2DA" stroke-width="1"/>
+<rect x="90" y="240" width="180" height="236" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="90" y="240" width="180" height="10" rx="5" fill="#087F73"/>
+<circle cx="124" cy="288" r="19" fill="#087F73"/>
+<text x="124" y="293" class="step" text-anchor="middle">01</text>
+<text x="110" y="334" class="compact" text-anchor="start">Ingest idea</text>
+<text x="110" y="370" class="small" text-anchor="start">
+<tspan x="110" dy="0">Preserve source</tspan>
+<tspan x="110" dy="25">Set research goals</tspan>
+</text>
+<line x1="274" y1="358" x2="288" y2="358" stroke="#7B8794" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="292" y="240" width="180" height="236" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="292" y="240" width="180" height="10" rx="5" fill="#246BCE"/>
+<circle cx="326" cy="288" r="19" fill="#246BCE"/>
+<text x="326" y="293" class="step" text-anchor="middle">02</text>
+<text x="312" y="334" class="compact" text-anchor="start">Audit fit</text>
+<text x="312" y="370" class="small" text-anchor="start">
+<tspan x="312" dy="0">Reuse researcher</tspan>
+<tspan x="312" dy="25">or create domain</tspan>
+</text>
+<line x1="476" y1="358" x2="490" y2="358" stroke="#7B8794" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="494" y="240" width="180" height="236" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="494" y="240" width="180" height="10" rx="5" fill="#C47A00"/>
+<circle cx="528" cy="288" r="19" fill="#C47A00"/>
+<text x="528" y="293" class="step" text-anchor="middle">03</text>
+<text x="514" y="334" class="compact" text-anchor="start">Literature</text>
+<text x="514" y="370" class="small" text-anchor="start">
+<tspan x="514" dy="0">Search · PDF · OCR</tspan>
+<tspan x="514" dy="25">Authors · DOI</tspan>
+<tspan x="514" dy="25">BibTeX</tspan>
+</text>
+<line x1="678" y1="358" x2="692" y2="358" stroke="#7B8794" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="696" y="240" width="180" height="236" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="696" y="240" width="180" height="10" rx="5" fill="#D94841"/>
+<circle cx="730" cy="288" r="19" fill="#D94841"/>
+<text x="730" y="293" class="step" text-anchor="middle">04</text>
+<text x="716" y="334" class="compact" text-anchor="start">Read deeply</text>
+<text x="716" y="370" class="small" text-anchor="start">
+<tspan x="716" dy="0">Question</tspan>
+<tspan x="716" dy="25">Method · variables</tspan>
+<tspan x="716" dy="25">Experiments</tspan>
+<tspan x="716" dy="25">Limits · refutation</tspan>
+</text>
+<line x1="880" y1="358" x2="894" y2="358" stroke="#7B8794" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="898" y="240" width="180" height="236" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="898" y="240" width="180" height="10" rx="5" fill="#7656A8"/>
+<circle cx="932" cy="288" r="19" fill="#7656A8"/>
+<text x="932" y="293" class="step" text-anchor="middle">05</text>
+<text x="918" y="334" class="compact" text-anchor="start">Build knowledge</text>
+<text x="918" y="370" class="small" text-anchor="start">
+<tspan x="918" dy="0">Paper memory</tspan>
+<tspan x="918" dy="25">Causal edges</tspan>
+<tspan x="918" dy="25">Hypotheses</tspan>
+<tspan x="918" dy="25">Mechanisms</tspan>
+</text>
+<line x1="1082" y1="358" x2="1096" y2="358" stroke="#7B8794" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1100" y="240" width="180" height="236" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="1100" y="240" width="180" height="10" rx="5" fill="#2F855A"/>
+<circle cx="1134" cy="288" r="19" fill="#2F855A"/>
+<text x="1134" y="293" class="step" text-anchor="middle">06</text>
+<text x="1120" y="334" class="compact" text-anchor="start">Recall with RAG</text>
+<text x="1120" y="370" class="small" text-anchor="start">
+<tspan x="1120" dy="0">Retrieve evidence</tspan>
+<tspan x="1120" dy="25">Transfer across papers</tspan>
+</text>
+<line x1="1284" y1="358" x2="1298" y2="358" stroke="#7B8794" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1302" y="240" width="180" height="236" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="1302" y="240" width="180" height="10" rx="5" fill="#17212B"/>
+<circle cx="1336" cy="288" r="19" fill="#17212B"/>
+<text x="1336" y="293" class="step" text-anchor="middle">07</text>
+<text x="1322" y="334" class="compact" text-anchor="start">Audit and sync</text>
+<text x="1322" y="370" class="small" text-anchor="start">
+<tspan x="1322" dy="0">Cost · quality</tspan>
+<tspan x="1322" dy="25">Researcher profile</tspan>
+<tspan x="1322" dy="25">Git versions</tspan>
+</text>
+<rect x="90" y="545" width="1420" height="225" rx="8" fill="#111820" stroke="#111820" stroke-width="1"/>
+<text x="120" y="587" class="card-title" text-anchor="start" style="fill:#FFFFFF">Durable artifact layer</text>
+<text x="120" y="617" class="body" text-anchor="start" style="fill:#B8C4CF">Every stage is resumable, traceable, and auditable</text>
+<rect x="120" y="653" width="150" height="76" rx="6" fill="#202A34" stroke="#43505C" stroke-width="1"/>
+<text x="195" y="698" class="small" text-anchor="middle" style="fill:#FFFFFF">Raw idea</text>
+<rect x="290" y="653" width="150" height="76" rx="6" fill="#202A34" stroke="#43505C" stroke-width="1"/>
+<text x="365" y="698" class="small" text-anchor="middle" style="fill:#FFFFFF">Paper master</text>
+<rect x="460" y="653" width="150" height="76" rx="6" fill="#202A34" stroke="#43505C" stroke-width="1"/>
+<text x="535" y="698" class="small" text-anchor="middle" style="fill:#FFFFFF">Full text + BibTeX</text>
+<rect x="630" y="653" width="150" height="76" rx="6" fill="#202A34" stroke="#43505C" stroke-width="1"/>
+<text x="705" y="698" class="small" text-anchor="middle" style="fill:#FFFFFF">Paper cards</text>
+<rect x="800" y="653" width="150" height="76" rx="6" fill="#202A34" stroke="#43505C" stroke-width="1"/>
+<text x="875" y="698" class="small" text-anchor="middle" style="fill:#FFFFFF">Validated memory</text>
+<rect x="970" y="653" width="150" height="76" rx="6" fill="#202A34" stroke="#43505C" stroke-width="1"/>
+<text x="1045" y="698" class="small" text-anchor="middle" style="fill:#FFFFFF">Causal knowledge</text>
+<rect x="1140" y="653" width="150" height="76" rx="6" fill="#202A34" stroke="#43505C" stroke-width="1"/>
+<text x="1215" y="698" class="small" text-anchor="middle" style="fill:#FFFFFF">JSONL RAG</text>
+<rect x="1310" y="653" width="150" height="76" rx="6" fill="#202A34" stroke="#43505C" stroke-width="1"/>
+<text x="1385" y="698" class="small" text-anchor="middle" style="fill:#FFFFFF">Researcher profile</text>
+<rect x="1280" y="68" width="230" height="30" rx="8" fill="#087F73"/>
+<text x="1395" y="89" class="small" text-anchor="middle" style="fill:#FFFFFF">23 Skills · Evidence First</text>
+</svg>

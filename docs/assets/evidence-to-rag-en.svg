@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Evidence first: from papers to recallable knowledge</title>
+<desc id="desc">The authoritative literature layer is never overwritten; reasoning can return to source text</desc>
+<defs>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#17212B" flood-opacity="0.10"/></filter>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7B8794"/></marker>
+<style>text{font-family:"Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif;letter-spacing:0}.title{font-size:38px;font-weight:700;fill:#17212B}.subtitle{font-size:18px;fill:#5B6773}.eyebrow{font-size:14px;font-weight:700;fill:#087F73}.card-title{font-size:21px;font-weight:700;fill:#17212B}.compact{font-size:17px;font-weight:700;fill:#17212B}.body{font-size:16px;fill:#5B6773}.small{font-size:14px;fill:#5B6773}.step{font-size:13px;font-weight:700;fill:#FFFFFF}.white{fill:#FFFFFF}.mono{font-family:"Noto Sans Mono CJK SC","SFMono-Regular",Consolas,monospace}</style>
+</defs>
+<rect width="1600" height="900" fill="#F7F8FA"/>
+<text x="90" y="64" class="eyebrow" text-anchor="start">EVIDENCE → MEMORY → RAG</text>
+<text x="90" y="112" class="title" text-anchor="start">Evidence first: from papers to recallable knowledge</text>
+<text x="90" y="148" class="subtitle" text-anchor="start">The authoritative literature layer is never overwritten; reasoning can return to source text</text>
+<line x1="90" y1="176" x2="1510" y2="176" stroke="#CAD2DA" stroke-width="1"/>
+<rect x="90" y="220" width="260" height="520" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="90" y="220" width="260" height="8" rx="4" fill="#246BCE"/>
+<text x="114" y="270" class="card-title" text-anchor="start">1. Authoritative layer</text>
+<rect x="420" y="220" width="260" height="520" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="420" y="220" width="260" height="8" rx="4" fill="#C47A00"/>
+<text x="444" y="270" class="card-title" text-anchor="start">2. Chunk extraction</text>
+<rect x="750" y="220" width="260" height="520" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="750" y="220" width="260" height="8" rx="4" fill="#D94841"/>
+<text x="774" y="270" class="card-title" text-anchor="start">3. Evidence gate</text>
+<rect x="1080" y="220" width="430" height="520" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="1080" y="220" width="430" height="8" rx="4" fill="#087F73"/>
+<text x="1104" y="270" class="card-title" text-anchor="start">4. Usable knowledge</text>
+<rect x="112" y="305" width="216" height="96" rx="6" fill="#F4F7FB" stroke="#B9C9DD" stroke-width="1"/>
+<text x="132" y="339" class="card-title" text-anchor="start">Paper master</text>
+<text x="132" y="367" class="small" text-anchor="start">
+<tspan x="132" dy="0">Authors, affiliations</tspan>
+<tspan x="132" dy="21">Source and DOI</tspan>
+</text>
+<rect x="112" y="433" width="216" height="96" rx="6" fill="#F4F7FB" stroke="#B9C9DD" stroke-width="1"/>
+<text x="132" y="467" class="card-title" text-anchor="start">PDF / full text</text>
+<text x="132" y="495" class="small" text-anchor="start">
+<tspan x="132" dy="0">Lawfully acquired</tspan>
+<tspan x="132" dy="21">Immutable source</tspan>
+</text>
+<rect x="112" y="561" width="216" height="96" rx="6" fill="#F4F7FB" stroke="#B9C9DD" stroke-width="1"/>
+<text x="132" y="595" class="card-title" text-anchor="start">BibTeX</text>
+<text x="132" y="623" class="small" text-anchor="start">
+<tspan x="132" dy="0">Citation key</tspan>
+<tspan x="132" dy="21">Reference metadata</tspan>
+</text>
+<rect x="112" y="690" width="216" height="30" rx="8" fill="#246BCE"/>
+<text x="220" y="711" class="small" text-anchor="middle" style="fill:#FFFFFF">Never overwritten</text>
+<rect x="442" y="305" width="216" height="96" rx="6" fill="#FFF9ED" stroke="#E7C987" stroke-width="1"/>
+<text x="462" y="339" class="compact" text-anchor="start">Independent chunks</text>
+<text x="462" y="367" class="small" text-anchor="start">
+<tspan x="462" dy="0">Retry only failed units</tspan>
+</text>
+<rect x="442" y="433" width="216" height="96" rx="6" fill="#FFF9ED" stroke="#E7C987" stroke-width="1"/>
+<text x="462" y="467" class="compact" text-anchor="start">Compact paper memory</text>
+<text x="462" y="495" class="small" text-anchor="start">
+<tspan x="462" dy="0">Default machine recall layer</tspan>
+</text>
+<rect x="442" y="561" width="216" height="96" rx="6" fill="#FFF9ED" stroke="#E7C987" stroke-width="1"/>
+<text x="462" y="595" class="compact" text-anchor="start">Hyper-Extract</text>
+<text x="462" y="623" class="small" text-anchor="start">
+<tspan x="462" dy="0">Optional fine-grained</tspan>
+<tspan x="462" dy="21">nodes and edges</tspan>
+</text>
+<rect x="442" y="690" width="216" height="30" rx="8" fill="#C47A00"/>
+<text x="550" y="711" class="small" text-anchor="middle" style="fill:#FFFFFF">Medium · Strong on failure</text>
+<rect x="772" y="305" width="216" height="96" rx="6" fill="#FFF3F2" stroke="#EAB0AC" stroke-width="1"/>
+<text x="792" y="339" class="card-title" text-anchor="start">Quotation match</text>
+<text x="792" y="367" class="small" text-anchor="start">
+<tspan x="792" dy="0">exact / layout-recovered</tspan>
+</text>
+<rect x="772" y="433" width="216" height="96" rx="6" fill="#FFF3F2" stroke="#EAB0AC" stroke-width="1"/>
+<text x="792" y="467" class="card-title" text-anchor="start">Claim support</text>
+<text x="792" y="495" class="small" text-anchor="start">
+<tspan x="792" dy="0">Does the source</tspan>
+<tspan x="792" dy="21">support the claim?</tspan>
+</text>
+<rect x="772" y="561" width="216" height="96" rx="6" fill="#FFF3F2" stroke="#EAB0AC" stroke-width="1"/>
+<text x="792" y="595" class="card-title" text-anchor="start">Causal boundary</text>
+<text x="792" y="623" class="small" text-anchor="start">
+<tspan x="792" dy="0">Association ≠</tspan>
+<tspan x="792" dy="21">identified effect</tspan>
+</text>
+<rect x="772" y="690" width="216" height="30" rx="8" fill="#D94841"/>
+<text x="880" y="711" class="small" text-anchor="middle" style="fill:#FFFFFF">Reject or downgrade failures</text>
+<rect x="1104" y="305" width="382" height="96" rx="6" fill="#F1FAF8" stroke="#9CCFC8" stroke-width="1"/>
+<text x="1126" y="337" class="card-title" text-anchor="start">Causal knowledge base</text>
+<text x="1126" y="364" class="small" text-anchor="start">
+<tspan x="1126" dy="0">Variables · mechanisms · interventions</tspan>
+<tspan x="1126" dy="22">Evidence state on every relation</tspan>
+</text>
+<rect x="1104" y="433" width="382" height="96" rx="6" fill="#F1FAF8" stroke="#9CCFC8" stroke-width="1"/>
+<text x="1126" y="465" class="card-title" text-anchor="start">Provider-neutral RAG</text>
+<text x="1126" y="492" class="small" text-anchor="start">
+<tspan x="1126" dy="0">JSONL corpus · source locations</tspan>
+<tspan x="1126" dy="22">Rehydrate evidence before reasoning</tspan>
+</text>
+<rect x="1104" y="561" width="382" height="96" rx="6" fill="#F1FAF8" stroke="#9CCFC8" stroke-width="1"/>
+<text x="1126" y="593" class="card-title" text-anchor="start">Researcher profile</text>
+<text x="1126" y="620" class="small" text-anchor="start">
+<tspan x="1126" dy="0">Readiness · task fit</tspan>
+<tspan x="1126" dy="22">Gaps and next actions</tspan>
+</text>
+<rect x="1104" y="690" width="382" height="30" rx="8" fill="#087F73"/>
+<text x="1295" y="711" class="small" text-anchor="middle" style="fill:#FFFFFF">Every answer can return to paper evidence</text>
+<line x1="354" y1="475" x2="410" y2="475" stroke="#7B8794" stroke-width="3" marker-end="url(#arrow)"/>
+<line x1="684" y1="475" x2="740" y2="475" stroke="#7B8794" stroke-width="3" marker-end="url(#arrow)"/>
+<line x1="1014" y1="475" x2="1070" y2="475" stroke="#7B8794" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="800" y="820" class="card-title" text-anchor="middle">Evidence is a gate, not a decoration.</text>
+</svg>

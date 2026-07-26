@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">先选择合适的研究生，再开始调研</title>
+<desc id="desc">严格两级：宽领域研究生 → 平级研究线；共享能力，隔离证据归属</desc>
+<defs>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#17212B" flood-opacity="0.10"/></filter>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7B8794"/></marker>
+<style>text{font-family:"Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif;letter-spacing:0}.title{font-size:38px;font-weight:700;fill:#17212B}.subtitle{font-size:18px;fill:#5B6773}.eyebrow{font-size:14px;font-weight:700;fill:#087F73}.card-title{font-size:21px;font-weight:700;fill:#17212B}.compact{font-size:17px;font-weight:700;fill:#17212B}.body{font-size:16px;fill:#5B6773}.small{font-size:14px;fill:#5B6773}.step{font-size:13px;font-weight:700;fill:#FFFFFF}.white{fill:#FFFFFF}.mono{font-family:"Noto Sans Mono CJK SC","SFMono-Regular",Consolas,monospace}</style>
+</defs>
+<rect width="1600" height="900" fill="#F7F8FA"/>
+<text x="90" y="64" class="eyebrow" text-anchor="start">RESEARCHER ASSIGNMENT GATE</text>
+<text x="90" y="112" class="title" text-anchor="start">先选择合适的研究生，再开始调研</text>
+<text x="90" y="148" class="subtitle" text-anchor="start">严格两级：宽领域研究生 → 平级研究线；共享能力，隔离证据归属</text>
+<line x1="90" y1="176" x2="1510" y2="176" stroke="#CAD2DA" stroke-width="1"/>
+<rect x="90" y="235" width="250" height="150" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="112" y="255" width="112" height="30" rx="8" fill="#17212B"/>
+<text x="168" y="276" class="small" text-anchor="middle" style="fill:#FFFFFF">新调研任务</text>
+<text x="112" y="319" class="card-title" text-anchor="start">研究问题 + 目标 + 约束</text>
+<text x="112" y="351" class="body" text-anchor="start">先不检索论文</text>
+<rect x="440" y="220" width="360" height="250" rx="8" fill="#F4F7FB" stroke="#AFC3DB" stroke-width="1" filter="url(#shadow)"/>
+<text x="466" y="265" class="card-title" text-anchor="start">适配审计</text>
+<circle cx="470" cy="305" r="5" fill="#246BCE"/>
+<text x="486" y="310" class="body" text-anchor="start">领域归属是否一致？</text>
+<circle cx="470" cy="342" r="5" fill="#246BCE"/>
+<text x="486" y="347" class="body" text-anchor="start">已有知识能否直接迁移？</text>
+<circle cx="470" cy="379" r="5" fill="#246BCE"/>
+<text x="486" y="384" class="body" text-anchor="start">画像 / 索引 / hot / RAG 是否命中？</text>
+<circle cx="470" cy="416" r="5" fill="#246BCE"/>
+<text x="486" y="421" class="body" text-anchor="start">仅方法相似不算适配</text>
+<line x1="344" y1="310" x2="428" y2="310" stroke="#7B8794" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="900" y="220" width="610" height="540" rx="8" fill="#FFFFFF" stroke="#CAD2DA" stroke-width="1" filter="url(#shadow)"/>
+<text x="930" y="265" class="card-title" text-anchor="start">持久化分配结果</text>
+<text x="930" y="298" class="small mono" text-anchor="start">wiki/meta/&lt;idea-id&gt;-postgraduate-assignment.md</text>
+<rect x="950" y="338" width="510" height="92" rx="6" fill="#EAF7F5" stroke="#91C8C1" stroke-width="1"/>
+<text x="1205" y="375" class="card-title" text-anchor="middle">Postgraduate_&lt;宽领域&gt;</text>
+<text x="1205" y="404" class="small" text-anchor="middle">一级：领域研究生，共享领域知识与 RAG</text>
+<rect x="935" y="500" width="160" height="118" rx="6" fill="#FFF9ED" stroke="#D7C28D" stroke-width="1"/>
+<text x="1015" y="542" class="card-title" text-anchor="middle">研究线 A</text>
+<text x="1015" y="572" class="small" text-anchor="middle">
+<tspan x="1015" dy="0">独立 paper master</tspan>
+<tspan x="1015" dy="20">claims</tspan>
+</text>
+<line x1="1205" y1="430" x2="1015" y2="500" stroke="#7B8794" stroke-width="2"/>
+<rect x="1115" y="500" width="160" height="118" rx="6" fill="#FFF9ED" stroke="#D7C28D" stroke-width="1"/>
+<text x="1195" y="542" class="card-title" text-anchor="middle">研究线 B</text>
+<text x="1195" y="572" class="small" text-anchor="middle">
+<tspan x="1195" dy="0">独立 hypotheses</tspan>
+<tspan x="1195" dy="20">experiments</tspan>
+</text>
+<line x1="1205" y1="430" x2="1195" y2="500" stroke="#7B8794" stroke-width="2"/>
+<rect x="1295" y="500" width="160" height="118" rx="6" fill="#F3F1F8" stroke="#BFAED5" stroke-width="1"/>
+<text x="1375" y="542" class="card-title" text-anchor="middle">新研究线</text>
+<text x="1375" y="572" class="small" text-anchor="middle">
+<tspan x="1375" dy="0">独立 evidence ownership</tspan>
+</text>
+<line x1="1205" y1="430" x2="1375" y2="500" stroke="#7B8794" stroke-width="2"/>
+<line x1="930" y1="665" x2="1480" y2="665" stroke="#D94841" stroke-width="3" stroke-dasharray="10 8"/>
+<text x="1205" y="700" class="card-title" text-anchor="middle" style="fill:#D94841">禁止第三级：研究线下面不再嵌套项目</text>
+<line x1="804" y1="310" x2="888" y2="310" stroke="#7B8794" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="454" y="510" width="155" height="30" rx="8" fill="#087F73"/>
+<text x="531" y="531" class="small" text-anchor="middle" style="fill:#FFFFFF">复用</text>
+<text x="454" y="566" class="body" text-anchor="start">领域 + 直接证据均匹配</text>
+<rect x="630" y="510" width="155" height="30" rx="8" fill="#C47A00"/>
+<text x="707" y="531" class="small" text-anchor="middle" style="fill:#FFFFFF">新建</text>
+<text x="630" y="566" class="body" text-anchor="start">无现有研究生适配</text>
+<text x="90" y="530" class="card-title" text-anchor="start">
+<tspan x="90" dy="0">决策原则</tspan>
+<tspan x="90" dy="35">共享领域知识</tspan>
+<tspan x="90" dy="35">隔离研究证据</tspan>
+<tspan x="90" dy="35">保留完整溯源</tspan>
+</text>
+</svg>
